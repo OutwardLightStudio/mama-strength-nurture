@@ -97,8 +97,6 @@ export enum DurationRange {
   ALL = "All",
   UNDER_5_MIN = "Under 5 min",
   FIVE_TO_TEN_MIN = "5-10 min",
-  TEN_TO_FIFTEEN_MIN = "10-15 min",
-  OVER_15_MIN = "Over 15 min"
 }
 
 /**
