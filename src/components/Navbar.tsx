@@ -1,7 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SignupForm from './SignupForm';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,9 +47,17 @@ const Navbar: React.FC = () => {
             <Link to="/schedule" className="text-mama-dark-text hover:text-mama-pink transition-colors">
               Schedule
             </Link>
-            <button className="btn-primary">
-              Sign Up
-            </button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="btn-primary">
+                  Sign Up
+                </button>
+              </DialogTrigger>
+              <DialogContent className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
+                <DialogTitle className="heading-sm mb-4">Join the MamaStrong community</DialogTitle>
+                <SignupForm />
+              </DialogContent>
+            </Dialog>
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,9 +94,17 @@ const Navbar: React.FC = () => {
               >
                 Schedule
               </Link>
-              <button className="btn-primary self-start">
-                Sign Up
-              </button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="btn-primary self-start">
+                    Sign Up
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
+                  <DialogTitle className="heading-sm mb-4">Join the MamaStrong community</DialogTitle>
+                  <SignupForm />
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         )}
