@@ -2,40 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Calendar, Clock, Heart, Check } from 'lucide-react';
-import { Exercise } from '../components/ExerciseCard';
-
-const exercises: Exercise[] = [
-  {
-    id: "1",
-    title: "Gentle Pelvic Floor Recovery",
-    category: "Recovery Basics",
-    duration: 5,
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Can do while nursing"],
-    benefits: ["Pelvic floor strength", "Core activation"],
-    connectionTips: ["Maintain eye contact with baby and smile while breathing through the exercises"]
-  },
-  {
-    id: "2",
-    title: "Standing Baby Cuddle Squats",
-    category: "Baby-inclusive",
-    duration: 8,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Standing", "Baby carrier or hold"],
-    benefits: ["Leg strength", "Posture support"],
-    connectionTips: ["Sing a gentle song to baby with each squat, creating a rhythm"]
-  },
-  {
-    id: "3",
-    title: "Diastasis Recti Healing",
-    category: "Recovery Basics",
-    duration: 10,
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Quiet environment"],
-    benefits: ["Abdominal healing", "Core stability"],
-    connectionTips: ["Place baby where they can see you, talk softly about what you're doing"]
-  }
-];
+import { Exercise, exercises } from '@/lib/exercises';
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const currentMonth = new Date().toLocaleString('default', { month: 'long' });
@@ -85,29 +52,31 @@ const Schedule = () => {
                 {currentMonth} {currentYear}
               </h2>
               <div className="flex space-x-2">
-                <button className="btn-outline py-1.5 px-3 text-sm">Previous</button>
-                <button className="btn-outline py-1.5 px-3 text-sm">Next</button>
+                <button className="btn-outline py-1 px-3 text-sm">Today</button>
               </div>
             </div>
             
-            <div className="grid grid-cols-7 gap-4 mb-6">
+            <div className="grid grid-cols-7 gap-2 mb-6">
               {weekData.map((data, index) => (
                 <button
                   key={index}
-                  className={`p-3 rounded-xl flex flex-col items-center transition-all ${
-                    index === selectedDay - 1
-                      ? 'bg-mama-pink'
-                      : 'hover:bg-mama-light-pink'
+                  className={`flex flex-col items-center justify-center p-4 rounded-lg transition-all ${
+                    selectedDay === index + 1 
+                      ? 'bg-mama-light-pink shadow-soft' 
+                      : 'hover:bg-mama-beige hover:bg-opacity-30'
                   }`}
                   onClick={() => setSelectedDay(index + 1)}
                 >
-                  <span className={`text-sm ${index === selectedDay - 1 ? 'text-mama-dark-text' : 'text-mama-light-text'}`}>
+                  <span className={`text-lg font-medium ${
+                    selectedDay === index + 1 ? 'text-mama-dark-text' : 'text-mama-light-text'
+                  }`}>
                     {data.day}
                   </span>
-                  <span className={`text-lg font-medium ${index === selectedDay - 1 ? 'text-mama-dark-text' : 'text-mama-dark-text'}`}>
-                    {index + 1}
+                  <span className={`text-xs ${
+                    selectedDay === index + 1 ? 'text-mama-dark-text' : 'text-mama-light-text'
+                  }`}>
+                    {data.exerciseCount} exercises
                   </span>
-                  
                   {data.exerciseCount > 0 && (
                     <div className="w-full bg-white bg-opacity-50 h-1 rounded-full mt-2 overflow-hidden">
                       <div 

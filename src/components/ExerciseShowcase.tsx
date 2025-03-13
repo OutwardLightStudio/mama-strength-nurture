@@ -1,55 +1,18 @@
-
 import React, { useState } from 'react';
-import ExerciseCard, { Exercise } from './ExerciseCard';
+import ExerciseCard from './ExerciseCard';
 import { Link } from 'react-router-dom';
+import { Exercise, exercises, getAllCategories, ExerciseCategory } from '@/lib/exercises';
 
-const exerciseData: Exercise[] = [
-  {
-    id: "1",
-    title: "Gentle Pelvic Floor Recovery",
-    category: "Recovery Basics",
-    duration: 5,
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Can do while nursing"],
-    benefits: ["Pelvic floor strength", "Core activation"],
-    connectionTips: ["Maintain eye contact with baby and smile while breathing through the exercises"]
-  },
-  {
-    id: "2",
-    title: "Standing Baby Cuddle Squats",
-    category: "Baby-inclusive",
-    duration: 8,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Standing", "Baby carrier or hold"],
-    benefits: ["Leg strength", "Posture support"],
-    connectionTips: ["Sing a gentle song to baby with each squat, creating a rhythm"]
-  },
-  {
-    id: "3",
-    title: "Diastasis Recti Healing",
-    category: "Recovery Basics",
-    duration: 10,
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Quiet environment"],
-    benefits: ["Abdominal healing", "Core stability"],
-    connectionTips: ["Place baby where they can see you, talk softly about what you're doing"]
-  }
-];
-
-const categories = [
-  "All",
-  "Recovery Basics",
-  "Full Body Strength",
-  "Short Routines",
-  "Baby-inclusive"
-];
+// Get all categories and add "All" as the first option
+const categories = getAllCategories();
 
 const ExerciseShowcase: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState<string>("All");
   
+  // Filter exercises based on the selected category
   const filteredExercises = activeCategory === "All" 
-    ? exerciseData 
-    : exerciseData.filter(ex => ex.category === activeCategory);
+    ? exercises 
+    : exercises.filter(ex => ex.category === activeCategory);
   
   return (
     <section className="py-16 md:py-24 px-6 bg-mama-beige bg-opacity-30">

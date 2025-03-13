@@ -1,99 +1,39 @@
-
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
-import ExerciseCard, { Exercise } from '../components/ExerciseCard';
+import ExerciseCard from '../components/ExerciseCard';
 import Footer from '../components/Footer';
+import { 
+  exercises, 
+  getAllCategories, 
+  getAllDurationRanges, 
+  getAllRequirements, 
+  filterExercises,
+  ExerciseFilters,
+  DurationRange,
+  ExerciseRequirement
+} from '@/lib/exercises';
 
-const exercises: Exercise[] = [
-  {
-    id: "1",
-    title: "Gentle Pelvic Floor Recovery",
-    category: "Recovery Basics",
-    duration: 5,
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Can do while nursing"],
-    benefits: ["Pelvic floor strength", "Core activation"],
-    connectionTips: ["Maintain eye contact with baby and smile while breathing through the exercises"]
-  },
-  {
-    id: "2",
-    title: "Standing Baby Cuddle Squats",
-    category: "Baby-inclusive",
-    duration: 8,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Standing", "Baby carrier or hold"],
-    benefits: ["Leg strength", "Posture support"],
-    connectionTips: ["Sing a gentle song to baby with each squat, creating a rhythm"]
-  },
-  {
-    id: "3",
-    title: "Diastasis Recti Healing",
-    category: "Recovery Basics",
-    duration: 10,
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Quiet environment"],
-    benefits: ["Abdominal healing", "Core stability"],
-    connectionTips: ["Place baby where they can see you, talk softly about what you're doing"]
-  },
-  {
-    id: "4",
-    title: "Gentle Back Stretch Series",
-    category: "Recovery Basics",
-    duration: 7,
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Support pillow"],
-    benefits: ["Back pain relief", "Improved posture"],
-    connectionTips: ["Position baby nearby where you can make faces at each other during holds"]
-  },
-  {
-    id: "5",
-    title: "Playful Tummy Time Exercises",
-    category: "Baby-inclusive",
-    duration: 5,
-    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Floor space", "Tummy time for baby"],
-    benefits: ["Core strength", "Upper body tone"],
-    connectionTips: ["Do your exercises facing baby during their tummy time, creating a mirroring effect"]
-  },
-  {
-    id: "6",
-    title: "Quick Standing Core Activation",
-    category: "Short Routines",
-    duration: 3,
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
-    requirements: ["Standing", "No equipment"],
-    benefits: ["Core activation", "Posture improvement"],
-    connectionTips: ["Hold baby while doing gentle standing exercises, maintaining eye contact"]
-  }
-];
-
-const categories = ["All", "Recovery Basics", "Full Body Strength", "Short Routines", "Baby-inclusive"];
-const durations = ["All", "Under 5 min", "5-10 min", "Over 10 min"];
-const requirements = ["All", "Floor space", "Standing", "Can do while nursing", "Baby carrier or hold", "No equipment"];
+// Get the filter options from our exercise library
+const categories = getAllCategories();
+const durations = getAllDurationRanges();
+const requirements = getAllRequirements();
 
 const Exercises = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [activeDuration, setActiveDuration] = useState("All");
-  const [activeRequirement, setActiveRequirement] = useState("All");
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeDuration, setActiveDuration] = useState<DurationRange>(DurationRange.ALL);
+  const [activeRequirement, setActiveRequirement] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
   
-  const filteredExercises = exercises.filter(exercise => {
-    // Filter by category
-    if (activeCategory !== "All" && exercise.category !== activeCategory) return false;
-    
-    // Filter by duration
-    if (activeDuration === "Under 5 min" && exercise.duration >= 5) return false;
-    if (activeDuration === "5-10 min" && (exercise.duration < 5 || exercise.duration > 10)) return false;
-    if (activeDuration === "Over 10 min" && exercise.duration <= 10) return false;
-    
-    // Filter by requirement
-    if (activeRequirement !== "All" && !exercise.requirements.includes(activeRequirement)) return false;
-    
-    // Filter by search query
-    if (searchQuery.trim() !== "" && !exercise.title.toLowerCase().includes(searchQuery.toLowerCase())) return false;
-    
-    return true;
-  });
+  // Create the filters object
+  const filters: ExerciseFilters = {
+    category: activeCategory,
+    duration: activeDuration,
+    requirement: activeRequirement,
+    searchQuery
+  };
+  
+  // Use our filterExercises utility function
+  const filteredExercises = filterExercises(exercises, filters);
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
@@ -149,7 +89,7 @@ const Exercises = () => {
                         ? 'bg-mama-pink text-mama-dark-text' 
                         : 'bg-white text-mama-light-text hover:bg-mama-light-pink hover:text-mama-dark-text'
                     }`}
-                    onClick={() => setActiveDuration(duration)}
+                    onClick={() => setActiveDuration(duration as DurationRange)}
                   >
                     {duration}
                   </button>

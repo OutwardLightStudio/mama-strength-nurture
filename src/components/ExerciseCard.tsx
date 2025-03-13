@@ -1,17 +1,6 @@
-
 import React from 'react';
 import { Clock, ArrowRight } from 'lucide-react';
-
-export interface Exercise {
-  id: string;
-  title: string;
-  category: string;
-  duration: number;
-  image: string;
-  requirements: string[];
-  benefits: string[];
-  connectionTips: string[];
-}
+import { Exercise } from '@/lib/exercises';
 
 interface ExerciseCardProps {
   exercise: Exercise;
