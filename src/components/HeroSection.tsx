@@ -1,14 +1,13 @@
 
 import React from 'react';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import SignupForm from './SignupForm';
 import { Link } from 'react-router-dom';
 import { 
   Dialog, 
   DialogContent,
   DialogTitle,
-  DialogTrigger,
-  DialogClose
+  DialogTrigger
 } from "@/components/ui/dialog";
 
 const HeroSection: React.FC = () => {
@@ -38,12 +37,7 @@ const HeroSection: React.FC = () => {
                 </button>
               </DialogTrigger>
               <DialogContent className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
-                <div className="flex justify-between items-center mb-4">
-                  <DialogTitle className="heading-sm">Join the MamaStrong community</DialogTitle>
-                  <DialogClose className="rounded-full p-1.5 hover:bg-gray-100">
-                    <X size={18} />
-                  </DialogClose>
-                </div>
+                <DialogTitle className="heading-sm mb-4">Join the MamaStrong community</DialogTitle>
                 <SignupForm />
               </DialogContent>
             </Dialog>
