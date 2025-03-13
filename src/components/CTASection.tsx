@@ -1,6 +1,7 @@
 
 import React from 'react';
 import SignupForm from './SignupForm';
+import { Link } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -38,9 +39,9 @@ const CTASection: React.FC = () => {
                 </DialogContent>
               </Dialog>
               
-              <button className="btn-outline">
+              <Link to="/exercises" className="btn-outline">
                 Learn more
-              </button>
+              </Link>
             </div>
             
             <p className="text-mama-light-text text-sm mt-6 animate-fade-in" style={{animationDelay: "0.3s"}}>

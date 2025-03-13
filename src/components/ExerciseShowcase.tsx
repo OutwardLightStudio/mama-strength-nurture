@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import ExerciseCard, { Exercise } from './ExerciseCard';
+import { Link } from 'react-router-dom';
 
 const exerciseData: Exercise[] = [
   {
@@ -85,9 +86,9 @@ const ExerciseShowcase: React.FC = () => {
         </div>
         
         <div className="mt-12 text-center animate-fade-in" style={{animationDelay: "0.5s"}}>
-          <button className="btn-primary">
+          <Link to="/exercises" className="btn-primary">
             Browse all exercises
-          </button>
+          </Link>
         </div>
       </div>
     </section>
