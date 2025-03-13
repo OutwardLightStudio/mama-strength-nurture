@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -46,7 +45,6 @@ const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
   const [completedExercises, setCompletedExercises] = useState<string[]>([]);
   
-  // Generate a week of fake data
   const weekData = days.map((day, index) => {
     const exerciseCount = Math.floor(Math.random() * 3);
     const dayProgress = Math.random();
@@ -159,7 +157,9 @@ const Schedule = () => {
                       </div>
                       
                       <div className="flex items-center ml-2">
-                        <Heart size={18} className="text-mama-pink mr-2" title="Connection tip available" />
+                        <div className="mr-2" aria-label="Connection tip available">
+                          <Heart size={18} className="text-mama-pink" />
+                        </div>
                         <button 
                           className={`text-xs px-2 py-1 rounded-full flex items-center ${
                             completedExercises.includes(exercise.id)

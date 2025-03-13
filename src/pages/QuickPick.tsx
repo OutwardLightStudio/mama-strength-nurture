@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -76,13 +75,9 @@ const QuickPick = () => {
   const handleTimeSelect = (time: number) => {
     setSelectedTime(time);
     
-    // Find exercises that fit within the selected time
     const filtered = exercises.filter(ex => ex.duration <= time);
-    
-    // Sort by duration (descending) to prioritize exercises that use more of the available time
     filtered.sort((a, b) => b.duration - a.duration);
     
-    // Select exercises until we've filled the time (or as close as possible)
     let remainingTime = time;
     const selected: Exercise[] = [];
     
@@ -177,7 +172,9 @@ const QuickPick = () => {
                       </div>
                       
                       <div className="flex items-center ml-2">
-                        <Heart size={18} className="text-mama-pink mr-2" title="Connection tip available" />
+                        <div className="mr-2" aria-label="Connection tip available">
+                          <Heart size={18} className="text-mama-pink" />
+                        </div>
                         <button className="text-xs bg-mama-blue px-2 py-1 rounded-full text-mama-dark-text">
                           View
                         </button>
