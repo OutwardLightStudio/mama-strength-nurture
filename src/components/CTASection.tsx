@@ -1,10 +1,14 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import SignupForm from './SignupForm';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 
 const CTASection: React.FC = () => {
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  
   return (
     <section className="py-16 md:py-24 px-6 bg-mama-pink bg-opacity-10">
       <div className="container mx-auto">
@@ -22,12 +26,17 @@ const CTASection: React.FC = () => {
             </p>
             
             <div className="flex flex-col md:flex-row gap-4 justify-center animate-fade-in" style={{animationDelay: "0.2s"}}>
-              <button 
-                className="btn-primary"
-                onClick={() => setIsFormOpen(true)}
-              >
-                Join the waitlist
-              </button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button className="btn-primary">
+                    Join the waitlist
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
+                  <DialogTitle className="heading-sm mb-4">Join the MamaStrong community</DialogTitle>
+                  <SignupForm />
+                </DialogContent>
+              </Dialog>
               
               <button className="btn-outline">
                 Learn more
@@ -40,15 +49,6 @@ const CTASection: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {isFormOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
-            <h2 className="heading-sm mb-4">Join the MamaStrong community</h2>
-            <SignupForm onClose={() => setIsFormOpen(false)} />
-          </div>
-        </div>
-      )}
     </section>
   );
 };

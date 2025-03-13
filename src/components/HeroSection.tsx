@@ -1,12 +1,16 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import SignupForm from './SignupForm';
 import { Link } from 'react-router-dom';
+import { 
+  Dialog, 
+  DialogContent,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 
 const HeroSection: React.FC = () => {
-  const [isSignupOpen, setIsSignupOpen] = useState(false);
-
   return (
     <section className="pt-32 pb-16 md:py-40 px-6 relative overflow-hidden bg-gradient-to-b from-mama-light-pink to-white">
       <div className="absolute top-0 right-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158')] bg-no-repeat bg-right-top lg:bg-right opacity-5 bg-cover"></div>
@@ -26,12 +30,18 @@ const HeroSection: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{animationDelay: "0.3s"}}>
-            <button 
-              className="btn-primary flex items-center justify-center gap-2"
-              onClick={() => setIsSignupOpen(true)}
-            >
-              Join the waitlist <ArrowRight size={18} />
-            </button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="btn-primary flex items-center justify-center gap-2">
+                  Join the waitlist <ArrowRight size={18} />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
+                <DialogTitle className="heading-sm mb-4">Join the MamaStrong community</DialogTitle>
+                <SignupForm />
+              </DialogContent>
+            </Dialog>
+            
             <Link to="/exercises" className="btn-outline inline-flex items-center justify-center">
               Browse exercises
             </Link>
@@ -49,15 +59,6 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {isSignupOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
-            <h2 className="heading-sm mb-4">Join the MamaStrong community</h2>
-            <SignupForm onClose={() => setIsSignupOpen(false)} />
-          </div>
-        </div>
-      )}
     </section>
   );
 };

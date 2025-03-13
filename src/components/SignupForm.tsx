@@ -1,13 +1,8 @@
 
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
-interface SignupFormProps {
-  onClose?: () => void;
-}
-
-const SignupForm: React.FC<SignupFormProps> = ({ onClose }) => {
+const SignupForm: React.FC = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [childAge, setChildAge] = useState('');
@@ -48,22 +43,11 @@ const SignupForm: React.FC<SignupFormProps> = ({ onClose }) => {
         title: "Success!",
         description: "You've been added to our waitlist. We'll notify you when we launch!",
       });
-      if (onClose) onClose();
     }, 1500);
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {onClose && (
-        <button 
-          type="button" 
-          onClick={onClose}
-          className="absolute top-4 right-4 text-mama-light-text hover:text-mama-dark-text transition-colors"
-        >
-          <X size={20} />
-        </button>
-      )}
-      
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-mama-dark-text mb-1">
           Email address
