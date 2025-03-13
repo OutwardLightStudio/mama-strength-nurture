@@ -1,69 +1,52 @@
-# Welcome to your Lovable project
+# MamaStrong
 
-## Project info
+Strength, resources & connection for your entire motherhood journey.
 
-**URL**: https://lovable.dev/projects/e72a0904-368e-4b5d-8ebf-ecc13f20bdf2
+## GitHub Pages Deployment
 
-## How can I edit this code?
+This project is configured to deploy automatically to GitHub Pages through GitHub Actions.
 
-There are several ways of editing your application.
+### Automatic Deployment
 
-**Use Lovable**
+Whenever changes are pushed to the `main` branch, GitHub Actions will automatically:
+1. Build the application
+2. Deploy it to GitHub Pages
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e72a0904-368e-4b5d-8ebf-ecc13f20bdf2) and start prompting.
+You can also trigger the deployment manually from the GitHub Actions tab in the repository.
 
-Changes made via Lovable will be committed automatically to this repo.
+### Manual Deployment
 
-**Use your preferred IDE**
+If you need to deploy manually from your local machine:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+# Install dependencies
+npm install
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# Build and deploy
+npm run deploy
 ```
 
-**Edit a file directly in GitHub**
+## Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Install dependencies
+npm install
 
-**Use GitHub Codespaces**
+# Start development server
+npm run dev
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Build for production
+npm run build
 
-## What technologies are used for this project?
+# Preview production build
+npm run preview
+```
 
-This project is built with .
+## Technologies
 
+- React
 - Vite
 - TypeScript
-- React
-- shadcn-ui
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e72a0904-368e-4b5d-8ebf-ecc13f20bdf2) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- React Router
+- GitHub Pages

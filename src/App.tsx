@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +9,9 @@ import QuickPick from "./pages/QuickPick";
 import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 
+// Get the base URL from the import.meta.env
+const baseUrl = import.meta.env.BASE_URL;
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -17,7 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={baseUrl}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/exercises" element={<Exercises />} />
