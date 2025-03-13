@@ -1,13 +1,14 @@
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 import SignupForm from './SignupForm';
 import { Link } from 'react-router-dom';
 import { 
   Dialog, 
   DialogContent,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
+  DialogClose
 } from "@/components/ui/dialog";
 
 const HeroSection: React.FC = () => {
@@ -22,11 +23,11 @@ const HeroSection: React.FC = () => {
           </span>
           
           <h1 className="heading-lg mb-6 animate-fade-in" style={{animationDelay: "0.1s"}}>
-            Strength & connection for mothers and babies
+            Strength, resources & connection for your entire motherhood journey
           </h1>
           
           <p className="text-body mb-8 animate-fade-in" style={{animationDelay: "0.2s"}}>
-            Build strength while nurturing the bond with your little one. MamaStrong offers exercises designed for busy mothers, with your baby by your side.
+            MamaStrong offers exercises designed for busy mothers, expert resources for every stage of childhood, and a supportive community of mothers to share the journey with you.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{animationDelay: "0.3s"}}>
@@ -37,7 +38,12 @@ const HeroSection: React.FC = () => {
                 </button>
               </DialogTrigger>
               <DialogContent className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
-                <DialogTitle className="heading-sm mb-4">Join the MamaStrong community</DialogTitle>
+                <div className="flex justify-between items-center mb-4">
+                  <DialogTitle className="heading-sm">Join the MamaStrong community</DialogTitle>
+                  <DialogClose className="rounded-full p-1.5 hover:bg-gray-100">
+                    <X size={18} />
+                  </DialogClose>
+                </div>
                 <SignupForm />
               </DialogContent>
             </Dialog>

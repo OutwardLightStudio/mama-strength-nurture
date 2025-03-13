@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Clock, Heart, Calendar, List } from 'lucide-react';
+import { Clock, Heart, Calendar, List, BookOpen, Users } from 'lucide-react';
 
 const FeatureSection: React.FC = () => {
   const features = [
@@ -27,6 +27,18 @@ const FeatureSection: React.FC = () => {
       title: "Flexible Scheduling",
       description: "Celebrate consistency rather than streaks, because we understand that interruptions are normal.",
       delay: "0.3s"
+    },
+    {
+      icon: <BookOpen size={24} className="text-mama-pink" />,
+      title: "Resource Library",
+      description: "Access helpful articles and resources for every stage of motherhood, from infancy through the teenage years.",
+      delay: "0.4s"
+    },
+    {
+      icon: <Users size={24} className="text-mama-pink" />,
+      title: "Support Network",
+      description: "Connect with other mothers in our community to share experiences, advice, and support so you never feel alone.",
+      delay: "0.5s"
     }
   ];
 
@@ -36,11 +48,11 @@ const FeatureSection: React.FC = () => {
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="heading-md mb-4 animate-fade-in">Designed for real motherhood</h2>
           <p className="text-body animate-fade-in" style={{animationDelay: "0.1s"}}>
-            MamaStrong recognizes the unique challenges of maintaining fitness as a mother. Our approach prioritizes both physical wellbeing and your precious bond with your baby.
+            MamaStrong recognizes the unique challenges of motherhood at every stage. Our approach prioritizes physical wellbeing, educational resources, and community support throughout your entire journey as a mother.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div 
               key={index} 

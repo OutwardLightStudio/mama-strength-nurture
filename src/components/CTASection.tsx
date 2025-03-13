@@ -5,8 +5,10 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
+  DialogClose
 } from "@/components/ui/dialog";
+import { X } from 'lucide-react';
 
 const CTASection: React.FC = () => {
   return (
@@ -22,7 +24,7 @@ const CTASection: React.FC = () => {
             </h2>
             
             <p className="text-body mb-8 max-w-2xl mx-auto animate-fade-in" style={{animationDelay: "0.1s"}}>
-              MamaStrong is currently in development. Join our waitlist to receive early access, special bonuses, and updates on our progress.
+              MamaStrong is currently in development. Join our waitlist to receive early access to our exercise library, parenting resources, and supportive community. Plus, get special bonuses and updates on our progress.
             </p>
             
             <div className="flex flex-col md:flex-row gap-4 justify-center animate-fade-in" style={{animationDelay: "0.2s"}}>
@@ -33,7 +35,12 @@ const CTASection: React.FC = () => {
                   </button>
                 </DialogTrigger>
                 <DialogContent className="bg-white rounded-2xl shadow-medium max-w-md w-full p-6 animate-fade-in-up">
-                  <DialogTitle className="heading-sm mb-4">Join the MamaStrong community</DialogTitle>
+                  <div className="flex justify-between items-center mb-4">
+                    <DialogTitle className="heading-sm">Join the MamaStrong community</DialogTitle>
+                    <DialogClose className="rounded-full p-1.5 hover:bg-gray-100">
+                      <X size={18} />
+                    </DialogClose>
+                  </div>
                   <SignupForm />
                 </DialogContent>
               </Dialog>
