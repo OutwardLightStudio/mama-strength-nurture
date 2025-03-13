@@ -18,7 +18,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_FLOOR_STRENGTH, 
       ExerciseBenefit.CORE_ACTIVATION
     ],
-    connectionTips: ["Maintain eye contact with baby and smile while breathing through the exercises"]
+    connectionTips: ["Make eye contact with your baby and speak softly while breathing through the exercises. This promotes secure attachment while you focus on healing."]
   },
   {
     id: "2",
@@ -34,7 +34,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.LEG_STRENGTH,
       ExerciseBenefit.POSTURE_SUPPORT
     ],
-    connectionTips: ["Sing a gentle song to baby with each squat, creating a rhythm"]
+    connectionTips: ["Sing a gentle song or count aloud with each squat, creating a consistent rhythm that soothes your baby while also helping you maintain proper form."]
   },
   {
     id: "3",
@@ -50,7 +50,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.ABDOMINAL_HEALING,
       ExerciseBenefit.CORE_STABILITY
     ],
-    connectionTips: ["Place baby where they can see you, talk softly about what you're doing"]
+    connectionTips: ["Position your baby where they can see your face, and narrate what you're doing in a calm voice. This models focused attention and helps you maintain proper breathing patterns."]
   },
   {
     id: "4",
@@ -66,7 +66,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.BACK_PAIN_RELIEF,
       ExerciseBenefit.IMPROVED_POSTURE
     ],
-    connectionTips: ["Position baby nearby where you can make faces at each other during holds"]
+    connectionTips: ["Position baby nearby at eye level where you can make gentle eye contact during holds, which supports both emotional bonding and helps you hold stretches for the proper duration."]
   },
   {
     id: "5",
@@ -82,7 +82,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CORE_STRENGTH,
       ExerciseBenefit.UPPER_BODY_TONE
     ],
-    connectionTips: ["Do your exercises facing baby during their tummy time, creating a mirroring effect"]
+    connectionTips: ["Do your exercises facing your baby during their tummy time, creating a mirroring effect that encourages baby's development while you strengthen your core."]
   },
   {
     id: "6",
@@ -98,7 +98,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CORE_ACTIVATION,
       ExerciseBenefit.POSTURE_IMPROVEMENT
     ],
-    connectionTips: ["Hold baby while doing gentle standing exercises, maintaining eye contact"]
+    connectionTips: ["If holding your baby, maintain proper alignment and engage your core to support your spine. Use this time to narrate your day or surroundings to stimulate language development."]
   },
   {
     id: "7",
@@ -117,7 +117,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.RELAXATION, 
       ExerciseBenefit.IMPROVED_BODY_AWARENESS
     ],
-    connectionTips: ["Practice while baby is nursing or sleeping on your chest to create a calming rhythm for both of you"]
+    connectionTips: ["Practice deep breathing while nursing or with baby resting on your chest. Your calm, rhythmic breathing can help regulate your baby's own breathing patterns and promote relaxation for both of you."]
   },
   {
     id: "8",
@@ -134,7 +134,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_STABILITY,
       ExerciseBenefit.CORE_ACTIVATION
     ],
-    connectionTips: ["Use nursing sessions as a reminder to perform pelvic floor exercises - contract when baby latches, hold, then release"]
+    connectionTips: ["Associate pelvic floor exercises with routine activities like nursing or diaper changes. Remember to fully release after each contraction, which is just as important as the contraction itself."]
   },
   {
     id: "9",
@@ -152,7 +152,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.JOINT_MOBILITY,
       ExerciseBenefit.ABDOMINAL_HEALING
     ],
-    connectionTips: ["Position baby for tummy time in front of you, making eye contact and talking to them as you move through the positions"]
+    connectionTips: ["Place your baby for supervised tummy time in front of you, maintaining eye contact and gently describing your movements which helps develop your baby's language skills and body awareness."]
   },
   {
     id: "10",
@@ -169,7 +169,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.DIASTASIS_RECTI_RECOVERY,
       ExerciseBenefit.CORE_STRENGTH
     ],
-    connectionTips: ["Sing a nursery rhyme as you count through your repetitions to entertain baby watching nearby"]
+    connectionTips: ["Place your baby where they can see you and recite a simple nursery rhyme as you count through repetitions, creating a consistent and calm environment for both of you."]
   },
   {
     id: "11",
@@ -186,7 +186,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_STABILITY,
       ExerciseBenefit.LOWER_BODY_STRENGTH
     ],
-    connectionTips: ["Position baby safely within view and use funny facial expressions between reps to keep them engaged"]
+    connectionTips: ["Position baby safely within view on a supportive surface. Maintain eye contact and use gentle expressions to engage them, helping you stay present and mindful during the exercise."]
   },
   {
     id: "12",
@@ -204,7 +204,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.POSTURE_SUPPORT,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Place baby in bouncer or on playmat facing you, counting out loud or singing as you complete repetitions"]
+    connectionTips: ["Place baby safely in a bouncer or on a playmat facing you. Count out loud or sing during repetitions, which helps your baby develop number recognition while supporting your exercise rhythm."]
   },
   {
     id: "13",
@@ -222,7 +222,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_STABILITY,
       ExerciseBenefit.BACK_PAIN_RELIEF
     ],
-    connectionTips: ["Perfect for practicing during nursing sessions to improve posture and reduce back strain"]
+    connectionTips: ["Practice during nursing sessions, focusing on your posture and core engagement to reduce back strain. This helps develop healthy nursing habits while supporting your recovery."]
   },
   {
     id: "14",
@@ -239,7 +239,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CONNECTION,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Make gentle 'swoosh' sounds as you rotate to entertain baby and stimulate their senses"]
+    connectionTips: ["Hold your baby securely and make gentle, predictable movements. Use soft sounds or narration to help your baby anticipate the movement, which develops their vestibular system and sense of security."]
   },
   {
     id: "15",
@@ -256,7 +256,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_FLOOR_STRENGTH,
       ExerciseBenefit.LOWER_BODY_STRENGTH
     ],
-    connectionTips: ["Place baby on your shins for gentle motion while you bridge, making this a playful bonding exercise"]
+    connectionTips: ["For older, stable babies, place them safely on your pelvis as you bridge (not recommended for newborns). The gentle movement can be soothing while the face-to-face position promotes bonding."]
   },
   {
     id: "16",
@@ -274,7 +274,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.UPPER_BODY_TONE,
       ExerciseBenefit.BETTER_NURSING_POSTURE
     ],
-    connectionTips: ["Practice while nursing to improve your posture, which helps baby maintain a good latch"]
+    connectionTips: ["Practice during nursing to improve your posture and reduce shoulder tension. Good posture during nursing helps baby maintain a proper latch and can prevent feeding difficulties."]
   },
   {
     id: "17",
@@ -291,7 +291,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.ABDOMINAL_HEALING,
       ExerciseBenefit.DIASTASIS_RECTI_RECOVERY
     ],
-    connectionTips: ["Position baby on your chest for added weight and bonding time as you perform the slides"]
+    connectionTips: ["If your baby enjoys being close, place them on your chest while performing heel slides. Focus on gentle core engagement and proper breathing - exhale as you extend your leg."]
   },
   {
     id: "18",
@@ -308,7 +308,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.BALANCE,
       ExerciseBenefit.BACK_PAIN_RELIEF
     ],
-    connectionTips: ["Position baby for tummy time under you, making funny noises each time you extend limbs"]
+    connectionTips: ["Position your baby safely on a mat in front of you for supervised tummy time. Make gentle eye contact and use soft encouraging words as you extend your limbs, keeping them engaged with your movements."]
   },
   {
     id: "19",
@@ -325,7 +325,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.STRESS_RELIEF,
       ExerciseBenefit.BETTER_NURSING_POSTURE
     ],
-    connectionTips: ["Practice during nursing sessions to reduce 'tech neck' and be more present with your baby"]
+    connectionTips: ["Practice mindful neck stretches during nursing, focusing on your baby rather than looking down at your phone. This promotes better posture and deeper connection with your baby."]
   },
   {
     id: "20",
@@ -342,7 +342,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.POSTURE_SUPPORT,
       ExerciseBenefit.CORE_ACTIVATION
     ],
-    connectionTips: ["Practice when picking up toys or baby items to use everyday movements as exercise opportunities"]
+    connectionTips: ["Practice proper hip hinge form when picking up your baby or toys from the floor, keeping your back straight and bending from the hips. This protects your back while modeling healthy movement."]
   },
   {
     id: "21",
@@ -360,7 +360,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_FLOOR_STRENGTH,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Hold baby securely against your chest for added resistance and face-to-face interaction"]
+    connectionTips: ["If baby is calm and your recovery allows, hold them securely against your chest for added resistance, maintaining proper form and breathing. Talk to them about what you're doing to provide language enrichment."]
   },
   {
     id: "22",
@@ -377,7 +377,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.DIASTASIS_RECTI_RECOVERY,
       ExerciseBenefit.ABDOMINAL_HEALING
     ],
-    connectionTips: ["Position baby where they can see you, narrating what you're doing to keep them engaged"]
+    connectionTips: ["Position your baby where they can safely observe you. Narrate your movements with descriptive language, which helps develop their vocabulary while keeping you focused on proper form."]
   },
   {
     id: "23",
@@ -395,7 +395,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.ENERGY,
       ExerciseBenefit.LOWER_BODY_STRENGTH
     ],
-    connectionTips: ["Point out interesting sights and sounds to baby during walks to stimulate their development"]
+    connectionTips: ["Narrate what you see on your walks, describing colors, objects, and sounds to stimulate your baby's sensory development. Start with shorter intervals and gradually increase as your stamina builds."]
   },
   {
     id: "24",
@@ -413,7 +413,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.POSTURE_IMPROVEMENT,
       ExerciseBenefit.STRENGTH
     ],
-    connectionTips: ["Sing a favorite lullaby or children's song through the routine to entertain baby while you move"]
+    connectionTips: ["If your baby is with you, maintain eye contact and use a soothing, rhythmic voice as you move. This consistency helps babies develop a sense of security even during your brief exercise breaks."]
   },
   {
     id: "25",
@@ -430,7 +430,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.FLEXIBILITY,
       ExerciseBenefit.CORE_ACTIVATION
     ],
-    connectionTips: ["Practice during nursing sessions to keep your spine mobile and reduce stiffness from prolonged sitting"]
+    connectionTips: ["Incorporate gentle spinal rotations during nursing sessions to ease back tension. Move slowly and with control, focusing on your breathing and maintaining proper support for your baby."]
   },
   {
     id: "26",
@@ -447,7 +447,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CORE_STABILITY,
       ExerciseBenefit.IMPROVED_BODY_AWARENESS
     ],
-    connectionTips: ["Integrate pelvic floor contractions into daily routines like diaper changes to build consistency"]
+    connectionTips: ["Link pelvic floor exercises to daily activities like diaper changes or feeding times to build consistency. Remember to fully relax between contractions for optimal recovery and function."]
   },
   {
     id: "27",
@@ -464,7 +464,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.UPPER_BODY_STRENGTH,
       ExerciseBenefit.POSTURE_SUPPORT
     ],
-    connectionTips: ["Position baby under you for eye contact and make silly faces during each plank hold"]
+    connectionTips: ["Position your baby safely where you can make eye contact during modified plank holds. Use gentle expressions and talk to them about what you're doing to keep both of you engaged."]
   },
   {
     id: "28",
@@ -481,7 +481,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.LOWER_BODY_STRENGTH,
       ExerciseBenefit.JOINT_MOBILITY
     ],
-    connectionTips: ["Hold baby securely during squat holds for added weight and face-to-face interaction"]
+    connectionTips: ["If your recovery progress allows, hold your baby securely at chest level during squat holds, ensuring proper alignment with knees tracking over toes. Focus on breathing deeply and maintaining eye contact."]
   },
   {
     id: "29",
@@ -498,7 +498,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_STABILITY,
       ExerciseBenefit.BACK_PAIN_RELIEF
     ],
-    connectionTips: ["Position baby for tummy time in front of you, maintaining eye contact as you move"]
+    connectionTips: ["Position your baby for supervised tummy time in front of you to encourage their development. Maintain eye contact while focusing on your breathing and proper core engagement."]
   },
   {
     id: "30",
@@ -515,7 +515,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.FLEXIBILITY,
       ExerciseBenefit.STRESS_RELIEF
     ],
-    connectionTips: ["Hold baby secure against your chest, gently swaying them side to side as you perform the movement"]
+    connectionTips: ["If holding your baby, keep them secure against your chest with proper support. Move slowly and gently to one side and then the other, using your breath to guide the movement and maintain stability."]
   },
   {
     id: "31",
@@ -532,6 +532,6 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CONNECTION,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Make a 'whoosh' sound as you raise baby slightly, creating a fun game they'll look forward to"]
+    connectionTips: ["Always support your baby's head and neck completely while performing gentle movements. Use consistent vocal cues before raising your arms slightly to help your baby anticipate and enjoy the motion."]
   }
 ];
