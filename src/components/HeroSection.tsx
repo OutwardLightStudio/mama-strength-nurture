@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import SignupForm from './SignupForm';
+import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
@@ -31,9 +32,9 @@ const HeroSection: React.FC = () => {
             >
               Join the waitlist <ArrowRight size={18} />
             </button>
-            <button className="btn-outline">
+            <Link to="/exercises" className="btn-outline inline-flex items-center justify-center">
               Browse exercises
-            </button>
+            </Link>
           </div>
           
           <div className="mt-10 flex items-center space-x-6 text-mama-light-text animate-fade-in" style={{animationDelay: "0.4s"}}>
