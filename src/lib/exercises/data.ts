@@ -105,7 +105,7 @@ export const exercises: Exercise[] = [
     title: "Diaphragmatic Breathing",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-1a?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE, 
       ExerciseRequirement.NO_EQUIPMENT, 
@@ -124,7 +124,7 @@ export const exercises: Exercise[] = [
     title: "Pelvic Floor Activation",
     category: ExerciseCategory.PELVIC_FLOOR,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-2b?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.NO_EQUIPMENT,
       ExerciseRequirement.CAN_DO_WHILE_NURSING
@@ -141,7 +141,7 @@ export const exercises: Exercise[] = [
     title: "Cat-Cow Exercise",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-3c?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -159,7 +159,7 @@ export const exercises: Exercise[] = [
     title: "Single Leg Extension",
     category: ExerciseCategory.DIASTASIS_RECTI,
     duration: 4,
-    image: "https://images.unsplash.com/photo-1649972904349-4d?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -176,7 +176,7 @@ export const exercises: Exercise[] = [
     title: "Clam Exercise",
     category: ExerciseCategory.PELVIC_FLOOR,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-5e?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -193,7 +193,7 @@ export const exercises: Exercise[] = [
     title: "Gentle Wall Push-Ups",
     category: ExerciseCategory.UPPER_BODY_TONE,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-6f?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.WALL_SPACE,
       ExerciseRequirement.STANDING,
@@ -211,7 +211,7 @@ export const exercises: Exercise[] = [
     title: "Seated Pelvic Tilts",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-7g?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.CHAIR,
       ExerciseRequirement.NO_EQUIPMENT,
@@ -229,7 +229,7 @@ export const exercises: Exercise[] = [
     title: "Baby-Weight Torso Rotations",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-8h?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.BABY_CARRIER_OR_HOLD,
       ExerciseRequirement.STANDING
@@ -246,7 +246,7 @@ export const exercises: Exercise[] = [
     title: "Modified Bridges",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-9i?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -263,7 +263,7 @@ export const exercises: Exercise[] = [
     title: "Shoulder Blade Squeezes",
     category: ExerciseCategory.POSTURAL_ALIGNMENT,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-10j?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.NO_EQUIPMENT,
       ExerciseRequirement.CAN_DO_WHILE_NURSING,
@@ -281,7 +281,7 @@ export const exercises: Exercise[] = [
     title: "Heel Slides",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-11k?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -298,7 +298,7 @@ export const exercises: Exercise[] = [
     title: "Bird Dog",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-12l?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -315,7 +315,7 @@ export const exercises: Exercise[] = [
     title: "Gentle Neck Stretches",
     category: ExerciseCategory.STRETCHING,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-13m?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.NO_EQUIPMENT,
       ExerciseRequirement.CAN_DO_WHILE_NURSING
@@ -332,7 +332,7 @@ export const exercises: Exercise[] = [
     title: "Standing Hip Hinges",
     category: ExerciseCategory.LOWER_BODY_STRENGTH,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-14n?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.STANDING,
       ExerciseRequirement.NO_EQUIPMENT
@@ -349,7 +349,7 @@ export const exercises: Exercise[] = [
     title: "Chair Squats",
     category: ExerciseCategory.LOWER_BODY_STRENGTH,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-15o?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.CHAIR,
       ExerciseRequirement.STANDING,
@@ -367,7 +367,7 @@ export const exercises: Exercise[] = [
     title: "Five-Minute Ab Circuit",
     category: ExerciseCategory.SHORT_ROUTINES,
     duration: 5,
-    image: "https://images.unsplash.com/photo-1649972904349-16p?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -384,7 +384,7 @@ export const exercises: Exercise[] = [
     title: "Stroller Walking Intervals",
     category: ExerciseCategory.CARDIO,
     duration: 10,
-    image: "https://images.unsplash.com/photo-1649972904349-17q?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.STANDING,
       ExerciseRequirement.BABY_CARRIER_OR_HOLD
@@ -402,7 +402,7 @@ export const exercises: Exercise[] = [
     title: "Three-Minute Body Refresh",
     category: ExerciseCategory.SHORT_ROUTINES,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-18r?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.STANDING,
       ExerciseRequirement.WALL_SPACE,
@@ -420,7 +420,7 @@ export const exercises: Exercise[] = [
     title: "Seated Spinal Rotations",
     category: ExerciseCategory.GENTLE_MOBILITY,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-19s?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.CHAIR,
       ExerciseRequirement.CAN_DO_WHILE_NURSING
@@ -437,7 +437,7 @@ export const exercises: Exercise[] = [
     title: "Progressive Pelvic Floor",
     category: ExerciseCategory.PELVIC_FLOOR,
     duration: 1,
-    image: "https://images.unsplash.com/photo-1649972904349-20t?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.NO_EQUIPMENT,
       ExerciseRequirement.CAN_DO_WHILE_NURSING
@@ -454,7 +454,7 @@ export const exercises: Exercise[] = [
     title: "Modified Planks",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-21u?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -471,7 +471,7 @@ export const exercises: Exercise[] = [
     title: "Deep Squat Holds",
     category: ExerciseCategory.LOWER_BODY_STRENGTH,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-22v?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.STANDING,
       ExerciseRequirement.CHAIR
@@ -488,7 +488,7 @@ export const exercises: Exercise[] = [
     title: "Kneeling Pelvic Tilts",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-23w?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.FLOOR_SPACE,
       ExerciseRequirement.NO_EQUIPMENT
@@ -505,7 +505,7 @@ export const exercises: Exercise[] = [
     title: "Standing Side Bends",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
-    image: "https://images.unsplash.com/photo-1649972904349-24x?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.STANDING,
       ExerciseRequirement.NO_EQUIPMENT
@@ -522,7 +522,7 @@ export const exercises: Exercise[] = [
     title: "Baby-Weight Shoulder Raises",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 3,
-    image: "https://images.unsplash.com/photo-1649972904349-25y?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
     requirements: [
       ExerciseRequirement.BABY_CARRIER_OR_HOLD,
       ExerciseRequirement.STANDING
