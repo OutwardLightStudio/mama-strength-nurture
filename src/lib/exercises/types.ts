@@ -9,7 +9,14 @@ export enum ExerciseCategory {
   RECOVERY_BASICS = "Recovery Basics",
   FULL_BODY_STRENGTH = "Full Body Strength",
   SHORT_ROUTINES = "Short Routines",
-  BABY_INCLUSIVE = "Baby-inclusive"
+  BABY_INCLUSIVE = "Baby-inclusive",
+  CORE_STRENGTH = "Core Strength",
+  UPPER_BODY_TONE = "Upper Body Tone",
+  LOWER_BODY_STRENGTH = "Lower Body Strength",
+  STRETCHING = "Stretching",
+  CARDIO = "Cardio",
+  YOGA = "Yoga",
+  PELVIC_FLOOR = "Pelvic Floor",
 }
 
 /**
@@ -23,7 +30,7 @@ export enum ExerciseRequirement {
   NO_EQUIPMENT = "No equipment",
   SUPPORT_PILLOW = "Support pillow",
   QUIET_ENVIRONMENT = "Quiet environment", 
-  TUMMY_TIME = "Tummy time for baby"
+  TUMMY_TIME = "Tummy time for baby",
 }
 
 /**
@@ -40,7 +47,19 @@ export enum ExerciseBenefit {
   IMPROVED_POSTURE = "Improved posture",
   CORE_STRENGTH = "Core strength",
   UPPER_BODY_TONE = "Upper body tone",
-  POSTURE_IMPROVEMENT = "Posture improvement"
+  POSTURE_IMPROVEMENT = "Posture improvement",
+  LOWER_BODY_STRENGTH = "Lower body strength",
+  STRESS_RELIEF = "Stress relief",
+  MINDFULNESS = "Mindfulness",
+  FLEXIBILITY = "Flexibility",
+  BALANCE = "Balance",
+  RELAXATION = "Relaxation",
+  STRENGTH = "Strength",
+  ENDURANCE = "Endurance",
+  FOCUS = "Focus",
+  ENERGY = "Energy",
+  CALM = "Calm",
+  CONNECTION = "Connection",
 }
 
 /**

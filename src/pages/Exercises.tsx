@@ -10,7 +10,8 @@ import {
   filterExercises,
   ExerciseFilters,
   DurationRange,
-  ExerciseRequirement
+  ExerciseRequirement,
+  ExerciseCategory
 } from '@/lib/exercises';
 
 // Get the filter options from our exercise library
@@ -19,9 +20,9 @@ const durations = getAllDurationRanges();
 const requirements = getAllRequirements();
 
 const Exercises = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeCategory, setActiveCategory] = useState<ExerciseCategory | "All">("All");
   const [activeDuration, setActiveDuration] = useState<DurationRange>(DurationRange.ALL);
-  const [activeRequirement, setActiveRequirement] = useState<string>("All");
+  const [activeRequirement, setActiveRequirement] = useState<ExerciseRequirement | "All">("All");
   const [searchQuery, setSearchQuery] = useState("");
   
   // Create the filters object
@@ -70,7 +71,7 @@ const Exercises = () => {
                         ? 'bg-mama-pink text-mama-dark-text' 
                         : 'bg-white text-mama-light-text hover:bg-mama-light-pink hover:text-mama-dark-text'
                     }`}
-                    onClick={() => setActiveCategory(category)}
+                    onClick={() => setActiveCategory(category as ExerciseCategory)}
                   >
                     {category}
                   </button>
@@ -108,7 +109,7 @@ const Exercises = () => {
                         ? 'bg-mama-pink text-mama-dark-text' 
                         : 'bg-white text-mama-light-text hover:bg-mama-light-pink hover:text-mama-dark-text'
                     }`}
-                    onClick={() => setActiveRequirement(requirement)}
+                    onClick={() => setActiveRequirement(requirement as ExerciseRequirement)}
                   >
                     {requirement}
                   </button>
