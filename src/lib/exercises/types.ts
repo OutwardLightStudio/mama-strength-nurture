@@ -17,6 +17,9 @@ export enum ExerciseCategory {
   CARDIO = "Cardio",
   YOGA = "Yoga",
   PELVIC_FLOOR = "Pelvic Floor",
+  DIASTASIS_RECTI = "Diastasis Recti",
+  GENTLE_MOBILITY = "Gentle Mobility",
+  POSTURAL_ALIGNMENT = "Postural Alignment",
 }
 
 /**
@@ -31,35 +34,60 @@ export enum ExerciseRequirement {
   SUPPORT_PILLOW = "Support pillow",
   QUIET_ENVIRONMENT = "Quiet environment", 
   TUMMY_TIME = "Tummy time for baby",
+  RESISTANCE_BAND = "Resistance band",
+  CHAIR = "Chair for support",
+  YOGA_MAT = "Yoga mat",
+  SMALL_WEIGHTS = "Small weights",
+  WALL_SPACE = "Wall space",
+  WATER_BOTTLE = "Water bottle",
 }
 
 /**
  * Common exercise benefits
  */
 export enum ExerciseBenefit {
+  // Core & Pelvic Health
   PELVIC_FLOOR_STRENGTH = "Pelvic floor strength",
+  PELVIC_STABILITY = "Pelvic stability",
   CORE_ACTIVATION = "Core activation",
-  LEG_STRENGTH = "Leg strength",
-  POSTURE_SUPPORT = "Posture support",
-  ABDOMINAL_HEALING = "Abdominal healing",
   CORE_STABILITY = "Core stability",
-  BACK_PAIN_RELIEF = "Back pain relief",
-  IMPROVED_POSTURE = "Improved posture",
   CORE_STRENGTH = "Core strength",
-  UPPER_BODY_TONE = "Upper body tone",
+  ABDOMINAL_HEALING = "Abdominal healing",
+  DIASTASIS_RECTI_RECOVERY = "Diastasis recti recovery",
+  
+  // Musculoskeletal Benefits
+  POSTURE_SUPPORT = "Posture support", 
+  IMPROVED_POSTURE = "Improved posture",
   POSTURE_IMPROVEMENT = "Posture improvement",
+  BACK_PAIN_RELIEF = "Back pain relief",
+  NECK_TENSION_RELIEF = "Neck tension relief",
+  LEG_STRENGTH = "Leg strength",
   LOWER_BODY_STRENGTH = "Lower body strength",
-  STRESS_RELIEF = "Stress relief",
-  MINDFULNESS = "Mindfulness",
+  UPPER_BODY_TONE = "Upper body tone",
+  UPPER_BODY_STRENGTH = "Upper body strength",
+  JOINT_MOBILITY = "Joint mobility",
   FLEXIBILITY = "Flexibility",
   BALANCE = "Balance",
-  RELAXATION = "Relaxation",
   STRENGTH = "Strength",
   ENDURANCE = "Endurance",
+  
+  // Mental & Emotional Benefits
+  STRESS_RELIEF = "Stress relief",
+  MINDFULNESS = "Mindfulness",
+  RELAXATION = "Relaxation",
   FOCUS = "Focus",
   ENERGY = "Energy",
   CALM = "Calm",
-  CONNECTION = "Connection",
+  MOOD_IMPROVEMENT = "Mood improvement",
+  SLEEP_QUALITY = "Better sleep quality",
+  
+  // Functional Benefits
+  IMPROVED_CARRYING_CAPACITY = "Improved carrying capacity",
+  BETTER_NURSING_POSTURE = "Better nursing posture",
+  REDUCED_FATIGUE = "Reduced fatigue",
+  CONNECTION = "Connection with baby",
+  IMPROVED_BODY_AWARENESS = "Improved body awareness",
+  HORMONAL_BALANCE = "Hormonal balance support",
 }
 
 /**
@@ -69,7 +97,8 @@ export enum DurationRange {
   ALL = "All",
   UNDER_5_MIN = "Under 5 min",
   FIVE_TO_TEN_MIN = "5-10 min",
-  OVER_10_MIN = "Over 10 min"
+  TEN_TO_FIFTEEN_MIN = "10-15 min",
+  OVER_15_MIN = "Over 15 min"
 }
 
 /**
@@ -99,6 +128,12 @@ export interface Exercise {
   
   /** Tips for maintaining connection with baby during the exercise */
   connectionTips: string[];
+  
+  /** Recommended postpartum stage (e.g., "0-6 weeks", "6-12 weeks", "3-6 months", "6+ months") */
+  recommendedStage?: string[];
+  
+  /** Brief description of the exercise */
+  description?: string;
 }
 
 /**
@@ -109,4 +144,5 @@ export interface ExerciseFilters {
   duration: DurationRange;
   requirement: ExerciseRequirement | "All";
   searchQuery?: string;
+  postpartumStage?: string | "All";
 }
