@@ -62,10 +62,6 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, index }) => {
           <h4 className="text-xs uppercase tracking-wider text-mama-light-text mb-2">Connection Tip</h4>
           <p className="text-sm text-mama-dark-text italic">"{exercise.connectionTips[0]}"</p>
         </div>
-        
-        <button className="mt-4 text-mama-dark-text font-medium text-sm flex items-center hover:text-mama-pink transition-colors">
-          View details <ArrowRight size={16} className="ml-1" />
-        </button>
       </div>
     </div>
   );
