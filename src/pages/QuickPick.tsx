@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import HealthNotice from '../components/HealthNotice';
 import { Clock, Heart, Check, AlertCircle } from 'lucide-react';
 import { 
   Exercise, 
@@ -35,50 +36,10 @@ const QuickPick = () => {
             </p>
           </div>
           
-          <div className="bg-mama-light-pink p-4 rounded-lg mb-8 animate-fade-in" style={{animationDelay: "0.05s"}}>
-            <div className="flex items-start">
-              <AlertCircle className="text-mama-pink mr-3 flex-shrink-0 mt-1" size={20} />
-              <div>
-                <h3 className="font-medium text-mama-dark-text mb-1">Health and Safety Notice</h3>
-                <p className="text-sm text-mama-dark-text mb-2">
-                  Listen to your body and only do what feels right for you. All exercises should be avoided if you have:
-                </p>
-                <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
-                  {defaultContraindications.slice(0, 3).map((contraindication, index) => (
-                    <li key={index}>{contraindication}</li>
-                  ))}
-                  {!showContraindicationsInfo && defaultContraindications.length > 3 && (
-                    <li>
-                      <button 
-                        className="text-mama-pink font-medium hover:underline"
-                        onClick={() => setShowContraindicationsInfo(true)}
-                      >
-                        See all contraindications...
-                      </button>
-                    </li>
-                  )}
-                </ul>
-                {showContraindicationsInfo && (
-                  <>
-                    <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
-                      {defaultContraindications.slice(3).map((contraindication, index) => (
-                        <li key={index + 3}>{contraindication}</li>
-                      ))}
-                    </ul>
-                    <button 
-                      className="text-sm text-mama-pink font-medium hover:underline"
-                      onClick={() => setShowContraindicationsInfo(false)}
-                    >
-                      Show less
-                    </button>
-                  </>
-                )}
-                <p className="text-sm text-mama-dark-text mt-2">
-                  Each exercise may have additional specific contraindications. Check the full exercise details before beginning.
-                </p>
-              </div>
-            </div>
-          </div>
+          <HealthNotice 
+            description="Listen to your body and only do what feels right for you. All exercises should be avoided if you have:"
+            footer="Each exercise may have additional specific contraindications. Check the full exercise details before beginning."
+          />
           
           <div className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" style={{animationDelay: "0.1s"}}>
             {timeOptions.map((time) => (
