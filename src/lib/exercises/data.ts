@@ -226,7 +226,7 @@ export const exercises: Exercise[] = [
   },
   {
     id: "14",
-    title: "Baby-Weight Torso Rotations",
+    title: "Gentle Torso Rotations with Baby",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 3,
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop",
@@ -239,7 +239,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CONNECTION,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Hold your baby securely and make gentle, predictable movements. Use soft sounds or narration to help your baby anticipate the movement, which develops their vestibular system and sense of security."]
+    connectionTips: ["Hold your baby securely against your chest and make gentle, predictable movements. Use soft sounds or narration to help your baby anticipate the movement, which develops their vestibular system and sense of security."]
   },
   {
     id: "15",
@@ -256,7 +256,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_FLOOR_STRENGTH,
       ExerciseBenefit.LOWER_BODY_STRENGTH
     ],
-    connectionTips: ["For older, stable babies, place them safely on your pelvis as you bridge (not recommended for newborns). The gentle movement can be soothing while the face-to-face position promotes bonding."]
+    connectionTips: ["Position your baby nearby where you can maintain eye contact during the exercise. The face-to-face position during your bridge holds promotes bonding while you focus on proper form."]
   },
   {
     id: "16",
@@ -360,7 +360,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_FLOOR_STRENGTH,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["If baby is calm and your recovery allows, hold them securely against your chest for added resistance, maintaining proper form and breathing. Talk to them about what you're doing to provide language enrichment."]
+    connectionTips: ["If your baby is calm in a nearby seat or bouncer, maintain eye contact and talk to them about what you're doing. This provides language enrichment while you strengthen your legs for everyday parenting activities."]
   },
   {
     id: "22",
@@ -481,7 +481,7 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.LOWER_BODY_STRENGTH,
       ExerciseBenefit.JOINT_MOBILITY
     ],
-    connectionTips: ["If your recovery progress allows, hold your baby securely at chest level during squat holds, ensuring proper alignment with knees tracking over toes. Focus on breathing deeply and maintaining eye contact."]
+    connectionTips: ["Position your baby where you can make eye contact during your squat holds. Sing a gentle song or count aloud, ensuring proper alignment with knees tracking over toes. Focus on breathing deeply and creating a calm environment."]
   },
   {
     id: "29",
@@ -519,7 +519,7 @@ export const exercises: Exercise[] = [
   },
   {
     id: "31",
-    title: "Baby-Weight Shoulder Raises",
+    title: "Gentle Upper Body Stretches with Baby",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 3,
     image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop",
@@ -532,6 +532,6 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CONNECTION,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Always support your baby's head and neck completely while performing gentle movements. Use consistent vocal cues before raising your arms slightly to help your baby anticipate and enjoy the motion."]
+    connectionTips: ["Always support your baby's head and neck completely while holding them close. Use gentle vocal cues before making small movements to help your baby feel secure and connected throughout the stretching routine."]
   }
 ];
