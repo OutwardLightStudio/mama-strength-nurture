@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Calendar, Clock, Heart, Check } from 'lucide-react';
-import { Exercise, exercises } from '@/lib/exercises';
+import { Calendar, Clock, Heart, Check, AlertCircle } from 'lucide-react';
+import { Exercise, exercises, defaultContraindications } from '@/lib/exercises';
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const currentMonth = new Date().toLocaleString('default', { month: 'long' });
@@ -11,6 +11,7 @@ const currentYear = new Date().getFullYear();
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
   const [completedExercises, setCompletedExercises] = useState<string[]>([]);
+  const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
   
   const weekData = days.map((day, index) => {
     const exerciseCount = Math.floor(Math.random() * 3);
@@ -38,11 +39,56 @@ const Schedule = () => {
       
       <main className="pt-24 px-6 pb-16">
         <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12 animate-fade-in">
+          <div className="text-center max-w-2xl mx-auto mb-8 animate-fade-in">
             <h1 className="heading-md mb-4">Your Movement Schedule</h1>
             <p className="text-body">
               A gentle plan for incorporating movement into your day, with flexibility for life's interruptions.
             </p>
+          </div>
+          
+          <div className="bg-mama-light-pink p-4 rounded-lg mb-8 animate-fade-in" style={{animationDelay: "0.05s"}}>
+            <div className="flex items-start">
+              <AlertCircle className="text-mama-pink mr-3 flex-shrink-0 mt-1" size={20} />
+              <div>
+                <h3 className="font-medium text-mama-dark-text mb-1">Health and Safety Reminder</h3>
+                <p className="text-sm text-mama-dark-text mb-2">
+                  Your wellbeing comes first. Before starting any scheduled exercises, remember that all movements should be avoided if you have:
+                </p>
+                <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
+                  {defaultContraindications.slice(0, 3).map((contraindication, index) => (
+                    <li key={index}>{contraindication}</li>
+                  ))}
+                  {!showContraindicationsInfo && defaultContraindications.length > 3 && (
+                    <li>
+                      <button 
+                        className="text-mama-pink font-medium hover:underline"
+                        onClick={() => setShowContraindicationsInfo(true)}
+                      >
+                        See all contraindications...
+                      </button>
+                    </li>
+                  )}
+                </ul>
+                {showContraindicationsInfo && (
+                  <>
+                    <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
+                      {defaultContraindications.slice(3).map((contraindication, index) => (
+                        <li key={index + 3}>{contraindication}</li>
+                      ))}
+                    </ul>
+                    <button 
+                      className="text-sm text-mama-pink font-medium hover:underline"
+                      onClick={() => setShowContraindicationsInfo(false)}
+                    >
+                      Show less
+                    </button>
+                  </>
+                )}
+                <p className="text-sm text-mama-dark-text mt-2">
+                  Listen to your body and modify exercises as needed. It's perfectly okay to skip a day when necessary.
+                </p>
+              </div>
+            </div>
           </div>
           
           <div className="bg-white rounded-2xl shadow-soft p-6 mb-8 animate-fade-in" style={{animationDelay: "0.1s"}}>
@@ -122,6 +168,11 @@ const Schedule = () => {
                           <span className="text-xs text-mama-light-text ml-2 flex items-center">
                             <Clock size={12} className="mr-0.5" /> {exercise.duration} min
                           </span>
+                          {exercise.contraindications && exercise.contraindications.length > 0 && (
+                            <span className="text-xs text-mama-pink ml-2 flex items-center">
+                              <AlertCircle size={12} className="mr-0.5" /> Contraindications
+                            </span>
+                          )}
                         </div>
                       </div>
                       

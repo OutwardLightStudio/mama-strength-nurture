@@ -9,7 +9,7 @@
 export * from './types';
 
 // Export the exercise data
-export { exercises } from './data';
+export { exercises, defaultContraindications } from './data';
 
 // Export utility functions
 export {

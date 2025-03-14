@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import ExerciseCard from '../components/ExerciseCard';
 import Footer from '../components/Footer';
+import { AlertCircle } from 'lucide-react';
 import { 
   exercises, 
   getAllCategories, 
@@ -11,7 +12,8 @@ import {
   ExerciseFilters,
   DurationRange,
   ExerciseRequirement,
-  ExerciseCategory
+  ExerciseCategory,
+  defaultContraindications,
 } from '@/lib/exercises';
 
 // Get the filter options from our exercise library
@@ -24,6 +26,7 @@ const Exercises = () => {
   const [activeDuration, setActiveDuration] = useState<DurationRange>(DurationRange.ALL);
   const [activeRequirement, setActiveRequirement] = useState<ExerciseRequirement | "All">("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
   
   // Create the filters object
   const filters: ExerciseFilters = {
@@ -42,11 +45,58 @@ const Exercises = () => {
       
       <main className="pt-24 px-6">
         <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12 animate-fade-in">
+          <div className="text-center max-w-2xl mx-auto mb-8 animate-fade-in">
             <h1 className="heading-md mb-4">Exercise Library</h1>
             <p className="text-body">
               Explore our collection of exercises designed specifically for postpartum recovery and strength building, with your baby by your side.
             </p>
+          </div>
+          
+          <div className="bg-mama-light-pink p-4 rounded-lg mb-8 animate-fade-in" style={{animationDelay: "0.05s"}}>
+            <div className="flex items-start">
+              <AlertCircle className="text-mama-pink mr-3 flex-shrink-0 mt-1" size={20} />
+              <div>
+                <h3 className="font-medium text-mama-dark-text mb-1">Health and Safety Notice</h3>
+                <p className="text-sm text-mama-dark-text mb-2">
+                  Always prioritize your well-being. Each exercise includes specific contraindications 
+                  (conditions when you should avoid that movement). All exercises should be avoided if you have:
+                </p>
+                <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
+                  {defaultContraindications.slice(0, 3).map((contraindication, index) => (
+                    <li key={index}>{contraindication}</li>
+                  ))}
+                  {!showContraindicationsInfo && defaultContraindications.length > 3 && (
+                    <li>
+                      <button 
+                        className="text-mama-pink font-medium hover:underline"
+                        onClick={() => setShowContraindicationsInfo(true)}
+                      >
+                        See all contraindications...
+                      </button>
+                    </li>
+                  )}
+                </ul>
+                {showContraindicationsInfo && (
+                  <>
+                    <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
+                      {defaultContraindications.slice(3).map((contraindication, index) => (
+                        <li key={index + 3}>{contraindication}</li>
+                      ))}
+                    </ul>
+                    <button 
+                      className="text-sm text-mama-pink font-medium hover:underline"
+                      onClick={() => setShowContraindicationsInfo(false)}
+                    >
+                      Show less
+                    </button>
+                  </>
+                )}
+                <p className="text-sm text-mama-dark-text mt-2">
+                  Always consult with your healthcare provider before beginning any exercise program, 
+                  especially during the postpartum period.
+                </p>
+              </div>
+            </div>
           </div>
           
           <div className="mb-8 animate-fade-in" style={{animationDelay: "0.1s"}}>

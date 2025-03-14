@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, ArrowRight } from 'lucide-react';
+import { Clock, ArrowRight, AlertCircle } from 'lucide-react';
 import { Exercise } from '@/lib/exercises';
 
 interface ExerciseCardProps {
@@ -56,6 +56,27 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, index }) => {
               ))}
             </div>
           </div>
+          
+          {exercise.contraindications && exercise.contraindications.length > 0 && (
+            <div>
+              <h4 className="text-xs uppercase tracking-wider text-mama-light-text mb-1 flex items-center">
+                <AlertCircle size={12} className="mr-1 text-mama-pink" />
+                Contraindications
+              </h4>
+              <div className="flex flex-wrap gap-1">
+                {exercise.contraindications.slice(0, 3).map((contraindication, i) => (
+                  <span key={i} className="text-xs bg-mama-light-pink px-2 py-1 rounded-md text-mama-dark-text">
+                    {contraindication}
+                  </span>
+                ))}
+                {exercise.contraindications.length > 3 && (
+                  <span className="text-xs bg-mama-light-pink px-2 py-1 rounded-md text-mama-dark-text">
+                    +{exercise.contraindications.length - 3} more
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
         </div>
         
         <div className="mt-4 pt-4 border-t border-mama-beige">

@@ -101,6 +101,7 @@ export enum ExerciseContraindication {
   HEAVY_BLEEDING = "Heavy postpartum bleeding",
   
   // Pelvic and Abdominal Concerns
+  DIASTASIS_RECTI = "Diastasis recti (>2 finger width)",
   SEVERE_DIASTASIS_RECTI = "Severe diastasis recti (>3 finger width)",
   PELVIC_ORGAN_PROLAPSE = "Pelvic organ prolapse symptoms",
   PELVIC_PAIN = "Pelvic pain or discomfort",
