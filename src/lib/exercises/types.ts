@@ -91,6 +91,49 @@ export enum ExerciseBenefit {
 }
 
 /**
+ * Exercise contraindications - conditions when exercises should be avoided
+ */
+export enum ExerciseContraindication {
+  // Postpartum Recovery Stages
+  IMMEDIATE_POSTPARTUM = "Immediate postpartum (0-6 weeks)",
+  CESAREAN_RECOVERY = "Cesarean recovery (0-8 weeks)",
+  ACUTE_PERINEAL_TEAR = "Acute perineal tear healing",
+  HEAVY_BLEEDING = "Heavy postpartum bleeding",
+  
+  // Pelvic and Abdominal Concerns
+  SEVERE_DIASTASIS_RECTI = "Severe diastasis recti (>3 finger width)",
+  PELVIC_ORGAN_PROLAPSE = "Pelvic organ prolapse symptoms",
+  PELVIC_PAIN = "Pelvic pain or discomfort",
+  URINARY_INCONTINENCE = "Active urinary incontinence",
+  
+  // Maternal Health Conditions
+  UNCONTROLLED_BLOOD_PRESSURE = "Uncontrolled high blood pressure",
+  PREECLAMPSIA = "Preeclampsia symptoms",
+  ACTIVE_INFECTION = "Active infection or fever",
+  EXCESSIVE_FATIGUE = "Excessive fatigue or exhaustion",
+  DIZZINESS = "Dizziness or lightheadedness",
+
+  // Pain and Discomfort
+  BACK_PAIN = "Acute back pain",
+  JOINT_PAIN = "Joint pain during exercise",
+  HEADACHE = "Severe headache",
+  MIGRAINE = "Active migraine",
+  MUSCLE_STRAIN = "Muscle strain or injury",
+  ABDOMINAL_PAIN = "Acute abdominal pain",
+  SHOULDER_PAIN = "Shoulder pain",
+  NECK_PAIN = "Neck pain",
+  WRIST_PAIN = "Wrist pain",
+  KNEE_PAIN = "Knee pain",
+
+
+  // General Exercise Considerations
+  NO_MEDICAL_CLEARANCE = "No medical clearance for exercise",
+  NOT_MEDICALLY_APPROVED = "Not medically approved for specific exercises",
+  DEHYDRATION = "Dehydration",
+  SLEEP_DEPRIVATION = "Severe sleep deprivation",
+}
+
+/**
  * Duration ranges for filtering exercises
  */
 export enum DurationRange {
@@ -126,6 +169,9 @@ export interface Exercise {
   
   /** Tips for maintaining connection with baby during the exercise */
   connectionTips: string[];
+  
+  /** Contraindications - conditions when this exercise should be avoided */
+  contraindications?: ExerciseContraindication[];
   
   /** Recommended postpartum stage (e.g., "0-6 weeks", "6-12 weeks", "3-6 months", "6+ months") */
   recommendedStage?: string[];

@@ -1,4 +1,17 @@
-import { Exercise, ExerciseCategory, ExerciseRequirement, ExerciseBenefit } from './types';
+import { Exercise, ExerciseCategory, ExerciseRequirement, ExerciseBenefit, ExerciseContraindication } from './types';
+
+/**
+ * Default contraindications that apply to most exercises
+ * These should be considered for all exercises unless specified otherwise
+ */
+export const defaultContraindications = [
+  ExerciseContraindication.NO_MEDICAL_CLEARANCE,
+  ExerciseContraindication.ACTIVE_INFECTION,
+  ExerciseContraindication.UNCONTROLLED_BLOOD_PRESSURE,
+  ExerciseContraindication.PREECLAMPSIA,
+  ExerciseContraindication.HEAVY_BLEEDING,
+  ExerciseContraindication.DIZZINESS,
+];
 
 /**
  * Collection of all exercises in the application
@@ -18,7 +31,12 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_FLOOR_STRENGTH, 
       ExerciseBenefit.CORE_ACTIVATION
     ],
-    connectionTips: ["Make eye contact with your baby and speak softly while breathing through the exercises. This promotes secure attachment while you focus on healing."]
+    connectionTips: ["Make eye contact with your baby and speak softly while breathing through the exercises. This promotes secure attachment while you focus on healing."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.PELVIC_PAIN,
+      ExerciseContraindication.ACUTE_PERINEAL_TEAR
+    ]
   },
   {
     id: "2",
@@ -34,7 +52,14 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.LEG_STRENGTH,
       ExerciseBenefit.POSTURE_SUPPORT
     ],
-    connectionTips: ["Sing a gentle song or count aloud with each squat, creating a consistent rhythm that soothes your baby while also helping you maintain proper form."]
+    connectionTips: ["Sing a gentle song or count aloud with each squat, creating a consistent rhythm that soothes your baby while also helping you maintain proper form."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM,
+      ExerciseContraindication.CESAREAN_RECOVERY,
+      ExerciseContraindication.PELVIC_ORGAN_PROLAPSE,
+      ExerciseContraindication.JOINT_PAIN
+    ]
   },
   {
     id: "3",
@@ -50,7 +75,11 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.ABDOMINAL_HEALING,
       ExerciseBenefit.CORE_STABILITY
     ],
-    connectionTips: ["Position your baby where they can see your face, and narrate what you're doing in a calm voice. This models focused attention and helps you maintain proper breathing patterns."]
+    connectionTips: ["Position your baby where they can see your face, and narrate what you're doing in a calm voice. This models focused attention and helps you maintain proper breathing patterns."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM
+    ]
   },
   {
     id: "4",
@@ -152,7 +181,13 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.JOINT_MOBILITY,
       ExerciseBenefit.ABDOMINAL_HEALING
     ],
-    connectionTips: ["Place your baby for supervised tummy time in front of you, maintaining eye contact and gently describing your movements which helps develop your baby's language skills and body awareness."]
+    connectionTips: ["Place your baby for supervised tummy time in front of you, maintaining eye contact and gently describing your movements which helps develop your baby's language skills and body awareness."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.CESAREAN_RECOVERY,
+      ExerciseContraindication.SEVERE_DIASTASIS_RECTI,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM
+    ]
   },
   {
     id: "10",
@@ -169,7 +204,13 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.DIASTASIS_RECTI_RECOVERY,
       ExerciseBenefit.CORE_STRENGTH
     ],
-    connectionTips: ["Place your baby where they can see you and recite a simple nursery rhyme as you count through repetitions, creating a consistent and calm environment for both of you."]
+    connectionTips: ["Place your baby where they can see you and recite a simple nursery rhyme as you count through repetitions, creating a consistent and calm environment for both of you."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.SEVERE_DIASTASIS_RECTI,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM,
+      ExerciseContraindication.BACK_PAIN
+    ]
   },
   {
     id: "11",
@@ -239,7 +280,14 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CONNECTION,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Hold your baby securely against your chest and make gentle, predictable movements. Use soft sounds or narration to help your baby anticipate the movement, which develops their vestibular system and sense of security."]
+    connectionTips: ["Hold your baby securely against your chest and make gentle, predictable movements. Use soft sounds or narration to help your baby anticipate the movement, which develops their vestibular system and sense of security."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.CESAREAN_RECOVERY,
+      ExerciseContraindication.SEVERE_DIASTASIS_RECTI,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM,
+      ExerciseContraindication.BACK_PAIN
+    ]
   },
   {
     id: "15",
@@ -256,7 +304,14 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.PELVIC_FLOOR_STRENGTH,
       ExerciseBenefit.LOWER_BODY_STRENGTH
     ],
-    connectionTips: ["Position your baby nearby where you can maintain eye contact during the exercise. The face-to-face position during your bridge holds promotes bonding while you focus on proper form."]
+    connectionTips: ["Position your baby nearby where you can maintain eye contact during the exercise. The face-to-face position during your bridge holds promotes bonding while you focus on proper form."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM,
+      ExerciseContraindication.PELVIC_ORGAN_PROLAPSE,
+      ExerciseContraindication.PELVIC_PAIN,
+      ExerciseContraindication.SEVERE_DIASTASIS_RECTI
+    ]
   },
   {
     id: "16",
@@ -377,7 +432,14 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.DIASTASIS_RECTI_RECOVERY,
       ExerciseBenefit.ABDOMINAL_HEALING
     ],
-    connectionTips: ["Position your baby where they can safely observe you. Narrate your movements with descriptive language, which helps develop their vocabulary while keeping you focused on proper form."]
+    connectionTips: ["Position your baby where they can safely observe you. Narrate your movements with descriptive language, which helps develop their vocabulary while keeping you focused on proper form."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM,
+      ExerciseContraindication.CESAREAN_RECOVERY,
+      ExerciseContraindication.SEVERE_DIASTASIS_RECTI,
+      ExerciseContraindication.BACK_PAIN
+    ]
   },
   {
     id: "23",
@@ -464,7 +526,15 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.UPPER_BODY_STRENGTH,
       ExerciseBenefit.POSTURE_SUPPORT
     ],
-    connectionTips: ["Position your baby safely where you can make eye contact during modified plank holds. Use gentle expressions and talk to them about what you're doing to keep both of you engaged."]
+    connectionTips: ["Position your baby safely where you can make eye contact during modified plank holds. Use gentle expressions and talk to them about what you're doing to keep both of you engaged."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM,
+      ExerciseContraindication.CESAREAN_RECOVERY,
+      ExerciseContraindication.SEVERE_DIASTASIS_RECTI,
+      ExerciseContraindication.WRIST_PAIN,
+      ExerciseContraindication.SHOULDER_PAIN
+    ]
   },
   {
     id: "28",
@@ -532,6 +602,12 @@ export const exercises: Exercise[] = [
       ExerciseBenefit.CONNECTION,
       ExerciseBenefit.IMPROVED_CARRYING_CAPACITY
     ],
-    connectionTips: ["Always support your baby's head and neck completely while holding them close. Use gentle vocal cues before making small movements to help your baby feel secure and connected throughout the stretching routine."]
+    connectionTips: ["Always support your baby's head and neck completely while holding them close. Use gentle vocal cues before making small movements to help your baby feel secure and connected throughout the stretching routine."],
+    contraindications: [
+      ...defaultContraindications,
+      ExerciseContraindication.CESAREAN_RECOVERY,
+      ExerciseContraindication.IMMEDIATE_POSTPARTUM,
+      ExerciseContraindication.SHOULDER_PAIN
+    ]
   }
 ];
