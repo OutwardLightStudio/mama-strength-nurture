@@ -16,7 +16,7 @@ const HealthNotice: React.FC<HealthNoticeProps> = ({
   const [showAllContraindications, setShowAllContraindications] = useState(false);
 
   return (
-    <div className="bg-mama-light-pink p-4 rounded-lg animate-fade-in" style={{animationDelay: "0.05s"}}>
+    <div className="bg-mama-light-pink p-4 rounded-lg animate-fade-in mb-3" style={{animationDelay: "0.05s"}}>
       <div className="flex items-start">
         <AlertCircle className="text-mama-dark-text mr-3 flex-shrink-0 mt-1" size={20} />
         <div>
