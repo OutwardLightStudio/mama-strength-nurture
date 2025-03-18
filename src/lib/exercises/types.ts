@@ -144,6 +144,27 @@ export enum DurationRange {
 }
 
 /**
+ * Types of quick pick workouts available
+ */
+export enum QuickPickType {
+  MICRO = "micro",
+  RESET = "reset",
+  MINI = "mini"
+}
+
+/**
+ * Configuration for quick pick workout options
+ */
+export interface QuickPickOption {
+  type: QuickPickType;
+  minutes: number;
+  title: string;
+  description: string;
+  color: string;
+  exerciseCount: number;
+}
+
+/**
  * Exercise interface
  */
 export interface Exercise {

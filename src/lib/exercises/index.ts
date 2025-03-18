@@ -9,14 +9,7 @@
 export * from './types';
 
 // Export the exercise data
-export { exercises, defaultContraindications } from './data';
+export * from './data';
 
 // Export utility functions
-export {
-  filterExercises,
-  findExercisesForTimeLimit,
-  getAllCategories,
-  getAllDurationRanges,
-  getAllRequirements,
-  getTotalDuration
-} from './utils';
+export * from './utils';

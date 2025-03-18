@@ -1,29 +1,8 @@
-
 import React from 'react';
-import { Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { quickPickOptions } from '@/lib/exercises';
 
 const QuickPickSection: React.FC = () => {
-  const timeOptions = [
-    {
-      minutes: 2,
-      title: "Micro Movement",
-      description: "Perfect for when baby is fussy or you only have a moment",
-      color: "bg-mama-light-pink"
-    },
-    {
-      minutes: 5,
-      title: "Quick Reset",
-      description: "A short but effective reset for your body and mind",
-      color: "bg-mama-light-blue"
-    },
-    {
-      minutes: 10,
-      title: "Mini Session",
-      description: "A more complete movement session when you have a bit more time",
-      color: "bg-mama-sage"
-    }
-  ];
-
   return (
     <section className="py-16 md:py-24 px-6 bg-white">
       <div className="container mx-auto">
@@ -35,7 +14,7 @@ const QuickPickSection: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in" style={{animationDelay: "0.2s"}}>
-          {timeOptions.map((option, index) => (
+          {quickPickOptions.map((option, index) => (
             <div key={index} className={`${option.color} rounded-2xl p-6 card-hover`}>
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-soft">
@@ -54,9 +33,12 @@ const QuickPickSection: React.FC = () => {
                 {option.description}
               </p>
               
-              <button className="w-full py-2.5 px-4 bg-white rounded-lg text-mama-dark-text font-medium hover:shadow-soft transition-all">
+              <Link 
+                to={`/quick-pick?type=${option.type}`}
+                className="block w-full py-2.5 px-4 bg-white rounded-lg text-mama-dark-text font-medium hover:shadow-soft transition-all text-center"
+              >
                 Start now
-              </button>
+              </Link>
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
-import { Exercise, ExerciseFilters, DurationRange, ExerciseCategory, ExerciseRequirement } from './types';
+import { exercises } from './data';
+import { Exercise, ExerciseFilters, DurationRange, ExerciseCategory, ExerciseRequirement, QuickPickOption, QuickPickType } from './types';
 
 /**
  * Filter exercises based on provided filters
@@ -23,9 +24,6 @@ export const filterExercises = (
         return false;
       }
       if (filters.duration === DurationRange.FIVE_TO_TEN_MIN && (exercise.duration < 5 || exercise.duration > 10)) {
-        return false;
-      }
-      if (filters.duration === DurationRange.OVER_10_MIN && exercise.duration <= 10) {
         return false;
       }
     }
@@ -107,4 +105,42 @@ export const getAllRequirements = (): string[] => {
  */
 export const getTotalDuration = (exercises: Exercise[]): number => {
   return exercises.reduce((total, exercise) => total + exercise.duration, 0);
+};
+
+export const quickPickOptions: QuickPickOption[] = [
+  {
+    type: QuickPickType.MICRO,
+    minutes: 2,
+    title: "Micro Movement",
+    description: "Perfect for when baby is fussy or you only have a moment",
+    color: "bg-mama-light-pink",
+    exerciseCount: 2
+  },
+  {
+    type: QuickPickType.RESET,
+    minutes: 5,
+    title: "Quick Reset",
+    description: "A short but effective reset for your body and mind",
+    color: "bg-mama-light-blue",
+    exerciseCount: 3
+  },
+  {
+    type: QuickPickType.MINI,
+    minutes: 10,
+    title: "Mini Session",
+    description: "A more complete movement session when you have a bit more time",
+    color: "bg-mama-sage",
+    exerciseCount: 4
+  }
+];
+
+export const getQuickPickOption = (type: QuickPickType): QuickPickOption | undefined => {
+  return quickPickOptions.find(option => option.type === type);
+};
+
+export const findExercisesForQuickPick = (type: QuickPickType): Exercise[] => {
+  const option = getQuickPickOption(type);
+  if (!option) return [];
+  
+  return findExercisesForTimeLimit(exercises, option.minutes).slice(0, option.exerciseCount);
 };
