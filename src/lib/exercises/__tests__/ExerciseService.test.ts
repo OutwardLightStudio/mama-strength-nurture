@@ -294,6 +294,41 @@ describe('ExerciseService', () => {
       expect(totalDuration).toBeLessThanOrEqual(option?.minutes || 0);
     });
 
+    it('should return randomized exercises when randomize is true', () => {
+      // Mock Math.random for deterministic test results
+      const originalRandom = Math.random;
+      
+      // First call with one set of random values
+      Math.random = vi.fn().mockImplementation(() => 0.1);
+      const result1 = exerciseService.findExercisesForQuickPick(QuickPickType.RESET, true);
+      
+      // Second call with different random values
+      Math.random = vi.fn().mockImplementation(() => 0.9);
+      const result2 = exerciseService.findExercisesForQuickPick(QuickPickType.RESET, true);
+      
+      // Log results for debugging
+      console.log('Result 1:', result1.map(e => e.id));
+      console.log('Result 2:', result2.map(e => e.id));
+      
+      // The two randomized results should be different (either in content or order)
+      let isDifferent = false;
+      if (result1.length === result2.length) {
+        for (let i = 0; i < result1.length; i++) {
+          if (result1[i].id !== result2[i].id) {
+            isDifferent = true;
+            break;
+          }
+        }
+      } else {
+        isDifferent = true;
+      }
+      
+      expect(isDifferent).toBe(true);
+      
+      // Restore Math.random
+      Math.random = originalRandom;
+    });
+
     it('should return an empty array for an invalid quick pick type', () => {
       // @ts-expect-error Testing with invalid type
       const result = exerciseService.findExercisesForQuickPick('invalid-type');

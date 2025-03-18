@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HealthNotice from '../components/HealthNotice';
 import { Calendar, Clock, Heart, Check, AlertCircle } from 'lucide-react';
-import { Exercise, exerciseService, DurationRange } from '@/lib/exercises';
+import { exerciseService, DurationRange } from '@/lib/exercises';
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const currentMonth = new Date().toLocaleString('default', { month: 'long' });

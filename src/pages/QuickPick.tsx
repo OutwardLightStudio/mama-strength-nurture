@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
-import ExerciseCard from '@/components/ExerciseCard';
 import Footer from '@/components/Footer';
 import HealthNotice from '@/components/HealthNotice';
-import { Clock, Heart, AlertCircle, Check } from 'lucide-react';
+import { Clock, Heart, AlertCircle, Check, RefreshCw, ArrowLeft } from 'lucide-react';
 import { exerciseService, Exercise, QuickPickType } from '@/lib/exercises';
 
 const QuickPick: React.FC = () => {
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [option, setOption] = useState(exerciseService.quickPickOptions[0]);
   const location = useLocation();
+  const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
   const typeParam = params.get('type');
+
+  // Function to load exercises for a given quick pick type
+  const loadExercisesForQuickPick = (quickPickType: QuickPickType, randomize: boolean = false) => {
+    const selectedExercises = exerciseService.findExercisesForQuickPick(quickPickType, randomize);
+    setExercises(selectedExercises);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,15 +30,32 @@ const QuickPick: React.FC = () => {
       if (quickPickOption) {
         setOption(quickPickOption);
       }
+      
+      // Load exercises for the selected quick pick type
+      loadExercisesForQuickPick(quickPickType as QuickPickType);
+    } else {
+      // Default to micro workouts when no type is specified
+      loadExercisesForQuickPick(QuickPickType.MICRO);
     }
-    
-    // Get exercises for the selected quick pick type
-    const selectedExercises = typeParam 
-      ? exerciseService.findExercisesForQuickPick(typeParam as QuickPickType)
-      : exerciseService.findExercisesForQuickPick(QuickPickType.MICRO);
-    
-    setExercises(selectedExercises);
   }, [location.search, typeParam]);
+
+  // Function to handle button clicks and update the URL
+  const handleQuickPickSelection = (selectedOption: typeof option) => {
+    setOption(selectedOption);
+    navigate(`/quick-pick?type=${selectedOption.type}`);
+  };
+
+  // Function to clear the workout and return to quick pick options
+  const handleClearWorkout = () => {
+    navigate('/quick-pick');
+  };
+
+  // Function to refresh the exercises with new random selections
+  const handleRefreshExercises = () => {
+    if (typeParam) {
+      loadExercisesForQuickPick(typeParam as QuickPickType, true);
+    }
+  };
 
   // Calculate total duration
   const totalDuration = exerciseService.getTotalDuration(exercises);
@@ -65,7 +88,8 @@ const QuickPick: React.FC = () => {
                       ? 'bg-mama-pink shadow-soft-lg transform scale-105'
                       : 'bg-white shadow-soft hover:transform hover:scale-105'
                   }`}
-                  onClick={() => setOption(timeOption)}
+                  onClick={() => handleQuickPickSelection(timeOption)}
+                  aria-label={`Select ${timeOption.title} workout for ${timeOption.minutes} minutes`}
                 >
                   <div className="text-4xl font-bold mb-2 text-mama-dark-text">{timeOption.minutes}</div>
                   <div className="text-xs text-mama-light-text mb-4">minutes</div>
@@ -77,11 +101,31 @@ const QuickPick: React.FC = () => {
             </div>
           )}
           
-          {option && exercises.length > 0 && (
+          {option && exercises.length > 0 && typeParam && (
             <div className="max-w-3xl mx-auto animate-fade-in" style={{animationDelay: "0.2s"}}>
+              <div className="flex justify-between items-center mb-4">
+                <button 
+                  onClick={handleClearWorkout}
+                  className="flex items-center text-mama-light-text hover:text-mama-dark-text transition-colors"
+                  aria-label="Back to quick pick options"
+                >
+                  <ArrowLeft size={18} className="mr-1" />
+                  <span>Choose different time</span>
+                </button>
+                
+                <button 
+                  onClick={handleRefreshExercises}
+                  className="flex items-center text-mama-light-text hover:text-mama-dark-text transition-colors"
+                  aria-label="Get new random exercises"
+                >
+                  <RefreshCw size={18} className="mr-1" />
+                  <span>New workout</span>
+                </button>
+              </div>
+              
               <div className="bg-white rounded-2xl shadow-soft p-6 mb-8">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-semibold text-mama-dark-text">Your Quick Workout</h2>
+                  <h2 className="text-xl font-semibold text-mama-dark-text">{option.title} Workout</h2>
                   <div className="flex items-center text-mama-light-text text-sm">
                     <Clock size={16} className="mr-1" />
                     <span>Total: {totalDuration} min</span>
@@ -154,7 +198,10 @@ const QuickPick: React.FC = () => {
             <div className="text-center py-12 animate-fade-in" style={{animationDelay: "0.2s"}}>
               <h3 className="text-lg font-medium text-mama-dark-text mb-2">No exercises found</h3>
               <p className="text-mama-light-text mb-4">We couldn't find exercises that fit within {option.minutes} minutes</p>
-              <button className="btn-outline" onClick={() => setOption(exerciseService.quickPickOptions[0])}>
+              <button 
+                className="btn-outline" 
+                onClick={() => navigate('/quick-pick')}
+              >
                 Try a different time
               </button>
             </div>

@@ -134,12 +134,38 @@ export class ExerciseService {
 
   /**
    * Find exercises for a specific quick pick type
+   * @param type The quick pick type to find exercises for
+   * @param randomize Whether to randomize the selection of exercises
    */
-  findExercisesForQuickPick(type: QuickPickType): Exercise[] {
+  findExercisesForQuickPick(type: QuickPickType, randomize: boolean = false): Exercise[] {
     const option = this.getQuickPickOption(type);
     if (!option) return [];
     
-    return this.findExercisesForTimeLimit(option.minutes).slice(0, option.exerciseCount);
+    // Get all exercises that fit in the time limit
+    const eligibleExercises = this.exercises.filter(ex => ex.duration <= option.minutes);
+    
+    if (randomize) {
+      // If randomizing, shuffle the exercises first
+      const shuffled = [...eligibleExercises].sort(() => 0.5 - Math.random());
+      
+      let remainingTime = option.minutes;
+      const selected: Exercise[] = [];
+      
+      // Take exercises until we reach the time limit or exercise count
+      for (const exercise of shuffled) {
+        if (exercise.duration <= remainingTime && selected.length < option.exerciseCount) {
+          selected.push(exercise);
+          remainingTime -= exercise.duration;
+          
+          if (remainingTime === 0 || selected.length >= option.exerciseCount) break;
+        }
+      }
+      
+      return selected;
+    } else {
+      // Default behavior - optimize for time usage with longest exercises first
+      return this.findExercisesForTimeLimit(option.minutes).slice(0, option.exerciseCount);
+    }
   }
 
   /**
