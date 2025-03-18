@@ -4,45 +4,36 @@ import ExerciseCard from '../components/ExerciseCard';
 import Footer from '../components/Footer';
 import HealthNotice from '../components/HealthNotice';
 import { 
-  exercises, 
-  getAllCategories, 
-  getAllDurationRanges, 
-  getAllRequirements, 
-  filterExercises,
-  ExerciseFilters,
-  DurationRange,
-  ExerciseRequirement,
-  ExerciseCategory,
-  defaultContraindications,
+  exerciseService, 
+  ExerciseCategory, 
+  DurationRange, 
+  ExerciseRequirement 
 } from '@/lib/exercises';
 
-// Get the filter options from our exercise library
-const categories = getAllCategories();
-const durations = getAllDurationRanges();
-const requirements = getAllRequirements();
-
 const Exercises = () => {
-  const [activeCategory, setActiveCategory] = useState<ExerciseCategory | "All">("All");
-  const [activeDuration, setActiveDuration] = useState<DurationRange>(DurationRange.ALL);
-  const [activeRequirement, setActiveRequirement] = useState<ExerciseRequirement | "All">("All");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
+  const [category, setCategory] = useState<"All" | ExerciseCategory>("All");
+  const [duration, setDuration] = useState<DurationRange>(DurationRange.ALL);
+  const [requirement, setRequirement] = useState<"All" | ExerciseRequirement>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredExercises, setFilteredExercises] = useState(exerciseService.getAllExercises());
+  
+  const categories = exerciseService.getAllCategories();
+  const durations = exerciseService.getAllDurationRanges();
+  const requirements = exerciseService.getAllRequirements();
   
   useEffect(() => {
-    // Scroll to the top of the page when the component is mounted
     window.scrollTo(0, 0);
   }, []);
   
-  // Create the filters object
-  const filters: ExerciseFilters = {
-    category: activeCategory,
-    duration: activeDuration,
-    requirement: activeRequirement,
-    searchQuery
-  };
-  
-  // Use our filterExercises utility function
-  const filteredExercises = filterExercises(exercises, filters);
+  useEffect(() => {
+    const filtered = exerciseService.filterExercises({
+      category,
+      duration,
+      requirement,
+      searchQuery
+    });
+    setFilteredExercises(filtered);
+  }, [category, duration, requirement, searchQuery]);
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
@@ -77,11 +68,11 @@ const Exercises = () => {
                   <button
                     key={category}
                     className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                      activeCategory === category 
+                      category === category 
                         ? 'bg-mama-pink text-mama-dark-text' 
                         : 'bg-white text-mama-light-text hover:bg-mama-light-pink hover:text-mama-dark-text'
                     }`}
-                    onClick={() => setActiveCategory(category as ExerciseCategory)}
+                    onClick={() => setCategory(category as ExerciseCategory)}
                   >
                     {category}
                   </button>
@@ -96,11 +87,11 @@ const Exercises = () => {
                   <button
                     key={duration}
                     className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                      activeDuration === duration 
+                      duration === duration 
                         ? 'bg-mama-pink text-mama-dark-text' 
                         : 'bg-white text-mama-light-text hover:bg-mama-light-pink hover:text-mama-dark-text'
                     }`}
-                    onClick={() => setActiveDuration(duration as DurationRange)}
+                    onClick={() => setDuration(duration as DurationRange)}
                   >
                     {duration}
                   </button>
@@ -115,11 +106,11 @@ const Exercises = () => {
                   <button
                     key={requirement}
                     className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
-                      activeRequirement === requirement 
+                      requirement === requirement 
                         ? 'bg-mama-pink text-mama-dark-text' 
                         : 'bg-white text-mama-light-text hover:bg-mama-light-pink hover:text-mama-dark-text'
                     }`}
-                    onClick={() => setActiveRequirement(requirement as ExerciseRequirement)}
+                    onClick={() => setRequirement(requirement as ExerciseRequirement)}
                   >
                     {requirement}
                   </button>

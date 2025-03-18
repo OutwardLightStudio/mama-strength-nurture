@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HealthNotice from '../components/HealthNotice';
 import { Calendar, Clock, Heart, Check, AlertCircle } from 'lucide-react';
-import { Exercise, exercises, defaultContraindications } from '@/lib/exercises';
+import { exerciseService, DurationRange } from '@/lib/exercises';
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const currentMonth = new Date().toLocaleString('default', { month: 'long' });
@@ -14,15 +14,34 @@ const Schedule = () => {
   const [completedExercises, setCompletedExercises] = useState<string[]>([]);
   const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
   
+  // Get all available exercises
+  const allExercises = exerciseService.getAllExercises();
+  
+  // Get some favorite exercises (we could implement a real favorites system later)
+  const favoriteExercises = exerciseService.filterExercises(
+    { category: "All", duration: DurationRange.ALL, requirement: "All" },
+    { random: true, limit: 3 }
+  );
+  
+  // Generate week data using exerciseService
   const weekData = days.map((day, index) => {
     const exerciseCount = Math.floor(Math.random() * 3);
     const dayProgress = Math.random();
+    
+    // Get random exercises for each day using the service's filterExercises method
+    const suggestedExercises = index === selectedDay - 1 
+      ? allExercises // Show all exercises for selected day
+      : exerciseService.filterExercises(
+          { category: "All", duration: DurationRange.ALL, requirement: "All" },
+          { random: true, limit: exerciseCount }
+        );
+    
     return {
       day,
       index,
       exerciseCount,
       progress: exerciseCount > 0 ? dayProgress : 0,
-      suggested: index === selectedDay - 1 ? exercises : exercises.slice(0, exerciseCount),
+      suggested: suggestedExercises,
     };
   });
   
@@ -191,7 +210,7 @@ const Schedule = () => {
             <div className="bg-white rounded-xl p-6 shadow-soft">
               <h3 className="text-lg font-medium text-mama-dark-text mb-3">Favorite Exercises</h3>
               <ul className="space-y-2">
-                {exercises.slice(0, 3).map((exercise) => (
+                {favoriteExercises.map((exercise) => (
                   <li key={exercise.id} className="flex items-center">
                     <div className="w-8 h-8 rounded overflow-hidden mr-2 flex-shrink-0">
                       <img 

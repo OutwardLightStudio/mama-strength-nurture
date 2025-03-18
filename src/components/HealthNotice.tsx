@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AlertCircle } from 'lucide-react';
-import { defaultContraindications } from '@/lib/exercises';
+import { exerciseService } from '@/lib/exercises';
 
 interface HealthNoticeProps {
   title?: string;
@@ -25,10 +25,10 @@ const HealthNotice: React.FC<HealthNoticeProps> = ({
             {description}
           </p>
           <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
-            {defaultContraindications.slice(0, 3).map((contraindication, index) => (
+            {exerciseService.defaultContraindications.slice(0, 3).map((contraindication, index) => (
               <li key={index}>{contraindication}</li>
             ))}
-            {!showAllContraindications && defaultContraindications.length > 3 && (
+            {!showAllContraindications && exerciseService.defaultContraindications.length > 3 && (
               <li>
                 <button 
                   className="text-mama-dark-text font-medium underline hover:no-underline"
@@ -42,7 +42,7 @@ const HealthNotice: React.FC<HealthNoticeProps> = ({
           {showAllContraindications && (
             <>
               <ul className="text-sm text-mama-dark-text list-disc pl-5 mb-2">
-                {defaultContraindications.slice(3).map((contraindication, index) => (
+                {exerciseService.defaultContraindications.slice(3).map((contraindication, index) => (
                   <li key={index + 3}>{contraindication}</li>
                 ))}
               </ul>
