@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import ExerciseCard from './ExerciseCard';
 import { Link } from 'react-router-dom';
-import { exerciseService, ExerciseCategory, DurationRange } from '@/lib/exercises';
+import { exerciseService, ExerciseCategory, DurationRange, Exercise } from '@/lib/exercises';
+import ExerciseCard from './ExerciseCard';
 
 // Get all categories 
 const categories = exerciseService.getAllCategories();
 
 const ExerciseShowcase: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<"All" | ExerciseCategory>("All");
-  
+
   const randomExercises = exerciseService.filterExercises(
     {
       category: activeCategory,

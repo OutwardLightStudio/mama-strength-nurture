@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HealthNotice from '../components/HealthNotice';
+import ExerciseCard from '@/components/ExerciseCard';
 import { Calendar, Clock, Heart, Check, AlertCircle } from 'lucide-react';
 import { exerciseService, DurationRange } from '@/lib/exercises';
 
@@ -124,61 +125,14 @@ const Schedule = () => {
               {weekData[selectedDay - 1].suggested.length > 0 ? (
                 <div className="space-y-4">
                   {weekData[selectedDay - 1].suggested.map((exercise) => (
-                    <div 
+                    <ExerciseCard
                       key={exercise.id}
-                      className={`flex items-center p-4 rounded-xl transition-all ${
-                        completedExercises.includes(exercise.id)
-                          ? 'bg-mama-light-blue'
-                          : 'bg-mama-beige bg-opacity-30 hover:bg-opacity-50'
-                      }`}
-                    >
-                      <div className="w-12 h-12 rounded-lg overflow-hidden mr-4 flex-shrink-0">
-                        <img 
-                          src={exercise.image} 
-                          alt={exercise.title} 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      
-                      <div className="flex-grow">
-                        <h3 className="text-mama-dark-text font-medium">{exercise.title}</h3>
-                        <div className="flex items-center mt-1">
-                          <span className="text-xs bg-white px-2 py-0.5 rounded text-mama-light-text">
-                            {exercise.category}
-                          </span>
-                          <span className="text-xs text-mama-light-text ml-2 flex items-center">
-                            <Clock size={12} className="mr-0.5" /> {exercise.duration} min
-                          </span>
-                          {exercise.contraindications && exercise.contraindications.length > 0 && (
-                            <span className="text-xs text-mama-pink ml-2 flex items-center">
-                              <AlertCircle size={12} className="mr-0.5" /> Contraindications
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center ml-2">
-                        <div className="mr-2" aria-label="Connection tip available">
-                          <Heart size={18} className="text-mama-pink" />
-                        </div>
-                        <button 
-                          className={`text-xs px-2 py-1 rounded-full flex items-center ${
-                            completedExercises.includes(exercise.id)
-                              ? 'bg-mama-blue text-mama-dark-text'
-                              : 'bg-white text-mama-dark-text'
-                          }`}
-                          onClick={() => handleCompleteExercise(exercise.id)}
-                        >
-                          {completedExercises.includes(exercise.id) ? (
-                            <>
-                              <Check size={12} className="mr-1" /> Completed
-                            </>
-                          ) : (
-                            'Mark Complete'
-                          )}
-                        </button>
-                      </div>
-                    </div>
+                      exercise={exercise}
+                      isCompleted={completedExercises.includes(exercise.id)}
+                      showComplete={true}
+                      onComplete={handleCompleteExercise}
+                      variant="compact"
+                    />
                   ))}
                 </div>
               ) : (

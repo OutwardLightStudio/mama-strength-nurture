@@ -18,7 +18,7 @@ export const defaultContraindications = [
  */
 export const exercises: Exercise[] = [
   {
-    id: "1",
+    id: "gentle-pelvic-floor-recovery",
     title: "Gentle Pelvic Floor Recovery",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 5,
@@ -38,7 +38,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "2",
+    id: "standing-baby-cuddle-squats",
     title: "Standing Baby Cuddle Squats",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 8,
@@ -60,7 +60,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "3",
+    id: "diastasis-recti-healing",
     title: "Diastasis Recti Healing",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 10,
@@ -79,7 +79,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "4",
+    id: "gentle-back-stretch-series",
     title: "Gentle Back Stretch Series",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 7,
@@ -95,7 +95,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Position baby nearby at eye level where you can make gentle eye contact during holds, which supports both emotional bonding and helps you hold stretches for the proper duration."]
   },
   {
-    id: "5",
+    id: "playful-tummy-time-exercises",
     title: "Playful Tummy Time Exercises",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 5,
@@ -111,7 +111,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Do your exercises facing your baby during their tummy time, creating a mirroring effect that encourages baby's development while you strengthen your core."]
   },
   {
-    id: "6",
+    id: "quick-standing-core-activation",
     title: "Quick Standing Core Activation",
     category: ExerciseCategory.SHORT_ROUTINES,
     duration: 3,
@@ -127,7 +127,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["If holding your baby, maintain proper alignment and engage your core to support your spine. Use this time to narrate your day or surroundings to stimulate language development."]
   },
   {
-    id: "7",
+    id: "diaphragmatic-breathing",
     title: "Diaphragmatic Breathing",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 3,
@@ -146,7 +146,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Practice deep breathing while nursing or with baby resting on your chest. Your calm, rhythmic breathing can help regulate your baby's own breathing patterns and promote relaxation for both of you."]
   },
   {
-    id: "8",
+    id: "pelvic-floor-activation",
     title: "Pelvic Floor Activation",
     category: ExerciseCategory.PELVIC_FLOOR,
     duration: 2,
@@ -163,7 +163,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Associate pelvic floor exercises with routine activities like nursing or diaper changes. Remember to fully release after each contraction, which is just as important as the contraction itself."]
   },
   {
-    id: "9",
+    id: "cat-cow-exercise",
     title: "Cat-Cow Exercise",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 3,
@@ -186,7 +186,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "10",
+    id: "single-leg-extension",
     title: "Single Leg Extension",
     category: ExerciseCategory.DIASTASIS_RECTI,
     duration: 4,
@@ -208,7 +208,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "11",
+    id: "clam-exercise",
     title: "Clam Exercise",
     category: ExerciseCategory.PELVIC_FLOOR,
     duration: 3,
@@ -225,7 +225,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Position baby safely within view on a supportive surface. Maintain eye contact and use gentle expressions to engage them, helping you stay present and mindful during the exercise."]
   },
   {
-    id: "12",
+    id: "gentle-wall-push-ups",
     title: "Gentle Wall Push-Ups",
     category: ExerciseCategory.UPPER_BODY_TONE,
     duration: 2,
@@ -243,7 +243,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Place baby safely in a bouncer or on a playmat facing you. Count out loud or sing during repetitions, which helps your baby develop number recognition while supporting your exercise rhythm."]
   },
   {
-    id: "13",
+    id: "seated-pelvic-tilts",
     title: "Seated Pelvic Tilts",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
@@ -261,7 +261,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Practice during nursing sessions, focusing on your posture and core engagement to reduce back strain. This helps develop healthy nursing habits while supporting your recovery."]
   },
   {
-    id: "14",
+    id: "gentle-torso-rotations-with-baby",
     title: "Gentle Torso Rotations with Baby",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 3,
@@ -284,7 +284,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "15",
+    id: "modified-bridges",
     title: "Modified Bridges",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 3,
@@ -307,7 +307,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "16",
+    id: "shoulder-blade-squeezes",
     title: "Shoulder Blade Squeezes",
     category: ExerciseCategory.POSTURAL_ALIGNMENT,
     duration: 2,
@@ -325,7 +325,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Practice during nursing to improve your posture and reduce shoulder tension. Good posture during nursing helps baby maintain a proper latch and can prevent feeding difficulties."]
   },
   {
-    id: "17",
+    id: "heel-slides",
     title: "Heel Slides",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 2,
@@ -342,7 +342,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["If your baby enjoys being close, place them on your chest while performing heel slides. Focus on gentle core engagement and proper breathing - exhale as you extend your leg."]
   },
   {
-    id: "18",
+    id: "bird-dog",
     title: "Bird Dog",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 3,
@@ -359,7 +359,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Position your baby safely on a mat in front of you for supervised tummy time. Make gentle eye contact and use soft encouraging words as you extend your limbs, keeping them engaged with your movements."]
   },
   {
-    id: "19",
+    id: "gentle-neck-stretches",
     title: "Gentle Neck Stretches",
     category: ExerciseCategory.STRETCHING,
     duration: 2,
@@ -376,7 +376,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Practice mindful neck stretches during nursing, focusing on your baby rather than looking down at your phone. This promotes better posture and deeper connection with your baby."]
   },
   {
-    id: "20",
+    id: "standing-hip-hinges",
     title: "Standing Hip Hinges",
     category: ExerciseCategory.LOWER_BODY_STRENGTH,
     duration: 3,
@@ -393,7 +393,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Practice proper hip hinge form when picking up your baby or toys from the floor, keeping your back straight and bending from the hips. This protects your back while modeling healthy movement."]
   },
   {
-    id: "21",
+    id: "chair-squats",
     title: "Chair Squats",
     category: ExerciseCategory.LOWER_BODY_STRENGTH,
     duration: 3,
@@ -411,7 +411,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["If your baby is calm in a nearby seat or bouncer, maintain eye contact and talk to them about what you're doing. This provides language enrichment while you strengthen your legs for everyday parenting activities."]
   },
   {
-    id: "22",
+    id: "five-minute-ab-circuit",
     title: "Five-Minute Ab Circuit",
     category: ExerciseCategory.SHORT_ROUTINES,
     duration: 5,
@@ -434,7 +434,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "23",
+    id: "stroller-walking-intervals",
     title: "Stroller Walking Intervals",
     category: ExerciseCategory.CARDIO,
     duration: 10,
@@ -452,7 +452,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Narrate what you see on your walks, describing colors, objects, and sounds to stimulate your baby's sensory development. Start with shorter intervals and gradually increase as your stamina builds."]
   },
   {
-    id: "24",
+    id: "three-minute-body-refresh",
     title: "Three-Minute Body Refresh",
     category: ExerciseCategory.SHORT_ROUTINES,
     duration: 3,
@@ -470,7 +470,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["If your baby is with you, maintain eye contact and use a soothing, rhythmic voice as you move. This consistency helps babies develop a sense of security even during your brief exercise breaks."]
   },
   {
-    id: "25",
+    id: "seated-spinal-rotations",
     title: "Seated Spinal Rotations",
     category: ExerciseCategory.GENTLE_MOBILITY,
     duration: 2,
@@ -487,7 +487,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Incorporate gentle spinal rotations during nursing sessions to ease back tension. Move slowly and with control, focusing on your breathing and maintaining proper support for your baby."]
   },
   {
-    id: "26",
+    id: "progressive-pelvic-floor",
     title: "Progressive Pelvic Floor",
     category: ExerciseCategory.PELVIC_FLOOR,
     duration: 1,
@@ -504,7 +504,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Link pelvic floor exercises to daily activities like diaper changes or feeding times to build consistency. Remember to fully relax between contractions for optimal recovery and function."]
   },
   {
-    id: "27",
+    id: "modified-planks",
     title: "Modified Planks",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
@@ -528,7 +528,7 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: "28",
+    id: "deep-squat-holds",
     title: "Deep Squat Holds",
     category: ExerciseCategory.LOWER_BODY_STRENGTH,
     duration: 3,
@@ -545,7 +545,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Position your baby where you can make eye contact during your squat holds. Sing a gentle song or count aloud, ensuring proper alignment with knees tracking over toes. Focus on breathing deeply and creating a calm environment."]
   },
   {
-    id: "29",
+    id: "kneeling-pelvic-tilts",
     title: "Kneeling Pelvic Tilts",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
@@ -562,7 +562,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["Position your baby for supervised tummy time in front of you to encourage their development. Maintain eye contact while focusing on your breathing and proper core engagement."]
   },
   {
-    id: "30",
+    id: "standing-side-bends",
     title: "Standing Side Bends",
     category: ExerciseCategory.CORE_STRENGTH,
     duration: 2,
@@ -579,7 +579,7 @@ export const exercises: Exercise[] = [
     connectionTips: ["If holding your baby, keep them secure against your chest with proper support. Move slowly and gently to one side and then the other, using your breath to guide the movement and maintain stability."]
   },
   {
-    id: "31",
+    id: "gentle-upper-body-stretches-with-baby",
     title: "Gentle Upper Body Stretches with Baby",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 3,
