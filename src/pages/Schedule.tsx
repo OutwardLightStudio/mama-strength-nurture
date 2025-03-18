@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HealthNotice from '../components/HealthNotice';
-import ExerciseListItem from '@/components/ExerciseListItem';
+import ExerciseCard from '@/components/ExerciseCard';
 import { Calendar, Clock, Heart, Check, AlertCircle } from 'lucide-react';
 import { exerciseService, DurationRange } from '@/lib/exercises';
 
@@ -125,28 +125,13 @@ const Schedule = () => {
               {weekData[selectedDay - 1].suggested.length > 0 ? (
                 <div className="space-y-4">
                   {weekData[selectedDay - 1].suggested.map((exercise) => (
-                    <ExerciseListItem
+                    <ExerciseCard
                       key={exercise.id}
                       exercise={exercise}
                       isCompleted={completedExercises.includes(exercise.id)}
-                      actionComponent={
-                        <button 
-                          className={`text-xs px-2 py-1 rounded-full flex items-center ${
-                            completedExercises.includes(exercise.id)
-                              ? 'bg-mama-blue text-mama-dark-text'
-                              : 'bg-white text-mama-dark-text'
-                          }`}
-                          onClick={() => handleCompleteExercise(exercise.id)}
-                        >
-                          {completedExercises.includes(exercise.id) ? (
-                            <>
-                              <Check size={12} className="mr-1" /> Completed
-                            </>
-                          ) : (
-                            'Mark Complete'
-                          )}
-                        </button>
-                      }
+                      showComplete={true}
+                      onComplete={handleCompleteExercise}
+                      variant="compact"
                     />
                   ))}
                 </div>
