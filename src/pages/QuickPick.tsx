@@ -1,21 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HealthNotice from '../components/HealthNotice';
 import { Clock, Heart, Check, AlertCircle } from 'lucide-react';
 import { 
-  Exercise, 
-  exercises, 
-  findExercisesForTimeLimit, 
-  getTotalDuration, 
-  defaultContraindications
+  Exercise,
+  QuickPickType,
+  quickPickOptions,
+  findExercisesForQuickPick,
+  findExercisesForTimeLimit,
+  getTotalDuration,
+  getQuickPickOption,
+  defaultContraindications,
+  exercises
 } from '@/lib/exercises';
 
 const QuickPick = () => {
-  const timeOptions = [2, 5, 10];
+  const [searchParams] = useSearchParams();
+  const quickPickType = searchParams.get('type') as QuickPickType | null;
+  const timeOptions = quickPickOptions.map(option => option.minutes);
+  
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
   const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
   const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
+  
+  useEffect(() => {
+    // If we have a quick pick type from the URL, use that to generate exercises
+    if (quickPickType) {
+      const option = getQuickPickOption(quickPickType);
+      if (option) {
+        setSelectedTime(option.minutes);
+        setSelectedExercises(findExercisesForQuickPick(quickPickType));
+      }
+    }
+  }, [quickPickType]);
   
   const handleTimeSelect = (time: number) => {
     setSelectedTime(time);
@@ -41,25 +60,27 @@ const QuickPick = () => {
             footer="Each exercise may have additional specific contraindications. Check the full exercise details before beginning."
           />
           
-          <div className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" style={{animationDelay: "0.1s"}}>
-            {timeOptions.map((time) => (
-              <button 
-                key={time}
-                className={`w-32 h-40 rounded-2xl flex flex-col items-center justify-center transition-all ${
-                  selectedTime === time
-                    ? 'bg-mama-pink shadow-soft-lg transform scale-105'
-                    : 'bg-white shadow-soft hover:transform hover:scale-105'
-                }`}
-                onClick={() => handleTimeSelect(time)}
-              >
-                <div className="text-4xl font-bold mb-2 text-mama-dark-text">{time}</div>
-                <div className="text-xs text-mama-light-text mb-4">minutes</div>
-                <p className={selectedTime === time ? "text-mama-dark-text" : "text-mama-light-text"}>
-                  {time === 2 ? "Micro Movement" : time === 5 ? "Quick Reset" : "Mini Session"}
-                </p>
-              </button>
-            ))}
-          </div>
+          {!quickPickType && (
+            <div className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in" style={{animationDelay: "0.1s"}}>
+              {timeOptions.map((time) => (
+                <button 
+                  key={time}
+                  className={`w-32 h-40 rounded-2xl flex flex-col items-center justify-center transition-all ${
+                    selectedTime === time
+                      ? 'bg-mama-pink shadow-soft-lg transform scale-105'
+                      : 'bg-white shadow-soft hover:transform hover:scale-105'
+                  }`}
+                  onClick={() => handleTimeSelect(time)}
+                >
+                  <div className="text-4xl font-bold mb-2 text-mama-dark-text">{time}</div>
+                  <div className="text-xs text-mama-light-text mb-4">minutes</div>
+                  <p className={selectedTime === time ? "text-mama-dark-text" : "text-mama-light-text"}>
+                    {quickPickOptions.find(opt => opt.minutes === time)?.title}
+                  </p>
+                </button>
+              ))}
+            </div>
+          )}
           
           {selectedTime && selectedExercises.length > 0 && (
             <div className="max-w-3xl mx-auto animate-fade-in" style={{animationDelay: "0.2s"}}>

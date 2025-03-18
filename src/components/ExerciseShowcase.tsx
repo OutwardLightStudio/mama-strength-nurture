@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ExerciseCard from './ExerciseCard';
 import { Link } from 'react-router-dom';
-import { Exercise, exercises, getAllCategories, ExerciseCategory } from '@/lib/exercises';
+import { exercises as exerciseData, getAllCategories } from '@/lib/exercises';
 
 // Get all categories and add "All" as the first option
 const categories = getAllCategories();
@@ -10,11 +10,13 @@ const ExerciseShowcase: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   
   // Filter exercises based on the selected category
+  // TODO: move this to the utils (or a proper place)
   const filteredExercises = activeCategory === "All" 
-    ? exercises 
-    : exercises.filter(ex => ex.category === activeCategory);
+    ? exerciseData 
+    : exerciseData.filter(ex => ex.category === activeCategory);
 
   // Pick two random exercises from the filtered exercises
+  // TODO: move this to the utils (or a proper place)
   const randomExercises = filteredExercises
     .sort(() => 0.5 - Math.random())
     .slice(0, 2);
