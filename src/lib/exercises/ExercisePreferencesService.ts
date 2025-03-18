@@ -2,6 +2,17 @@ import { db } from '../db';
 
 export class ExercisePreferencesService {
   async setFavorite(exerciseId: string, isFavorite: boolean): Promise<void> {
+    // TODO: make sure this is an "upsert" operation
+    // i.e. if the exerciseId already exists, update it, otherwise create a new entry
+    // This is a workaround for the lack of upsert in Dexie
+    const existingPreference = await db.exercisePreferences.get(exerciseId);
+    if (existingPreference) {
+      await db.exercisePreferences.update(exerciseId, {
+        isFavorite: isFavorite ? 1 : 0
+      });
+      return;
+    }
+    // If it doesn't exist, create a new entry
     await db.exercisePreferences.put({ 
       exerciseId, 
       isFavorite: isFavorite ? 1 : 0 
