@@ -5,7 +5,7 @@ import { Exercise, ExerciseCategory, ExerciseRequirement, DurationRange, QuickPi
 // Mock exercise data for testing
 const mockExercises: Exercise[] = [
   {
-    id: "1",
+    id: "gentle-pelvic-floor-recovery",
     title: "Gentle Pelvic Floor Recovery",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 5,
@@ -21,7 +21,7 @@ const mockExercises: Exercise[] = [
     connectionTips: ["Make eye contact with your baby"]
   },
   {
-    id: "2",
+    id: "standing-baby-cuddle-squats",
     title: "Standing Baby Cuddle Squats",
     category: ExerciseCategory.BABY_INCLUSIVE,
     duration: 8,
@@ -37,7 +37,7 @@ const mockExercises: Exercise[] = [
     connectionTips: ["Sing a gentle song"]
   },
   {
-    id: "3",
+    id: "quick-standing-core-activation",
     title: "Quick Standing Core Activation",
     category: ExerciseCategory.SHORT_ROUTINES,
     duration: 3,
@@ -53,7 +53,7 @@ const mockExercises: Exercise[] = [
     connectionTips: ["Maintain proper alignment"]
   },
   {
-    id: "4",
+    id: "diaphragmatic-breathing",
     title: "Diaphragmatic Breathing",
     category: ExerciseCategory.RECOVERY_BASICS,
     duration: 3,
@@ -69,8 +69,8 @@ const mockExercises: Exercise[] = [
     connectionTips: ["Practice deep breathing"]
   },
   {
-    id: "5",
-    title: "Clam Exercise",
+    id: "pelvic-floor-activation",
+    title: "Pelvic Floor Activation",
     category: ExerciseCategory.PELVIC_FLOOR,
     duration: 3,
     image: "image-url-5.jpg",
@@ -120,8 +120,8 @@ describe('ExerciseService', () => {
         requirement: "All"
       });
       expect(result).toHaveLength(2);
-      expect(result[0].id).toBe("1");
-      expect(result[1].id).toBe("4");
+      expect(result[0].id).toBe("gentle-pelvic-floor-recovery");
+      expect(result[1].id).toBe("diaphragmatic-breathing");
     });
 
     it('should filter by duration - under 5 min', () => {
@@ -167,7 +167,7 @@ describe('ExerciseService', () => {
         searchQuery: "breathing"
       });
       expect(result).toHaveLength(1);
-      expect(result[0].id).toBe("4");
+      expect(result[0].id).toBe("diaphragmatic-breathing");
     });
 
     it('should filter by search query - category', () => {
@@ -179,7 +179,7 @@ describe('ExerciseService', () => {
       });
       expect(result).toHaveLength(2);
       // Both exercise #1 and #5 have "pelvic" in their benefits or category
-      expect(result.map(ex => ex.id).sort()).toEqual(["1", "5"]);
+      expect(result.map(ex => ex.id).sort()).toEqual(["gentle-pelvic-floor-recovery", "pelvic-floor-activation"]);
     });
 
     it('should return random exercises when random option is true', () => {
@@ -222,7 +222,7 @@ describe('ExerciseService', () => {
       });
       
       expect(result).toHaveLength(1);
-      expect(result[0].id).toBe("4");
+      expect(result[0].id).toBe("diaphragmatic-breathing");
     });
   });
 
