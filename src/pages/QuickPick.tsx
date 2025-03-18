@@ -12,7 +12,6 @@ import {
   findExercisesForTimeLimit,
   getTotalDuration,
   getQuickPickOption,
-  defaultContraindications,
   exercises
 } from '@/lib/exercises';
 
@@ -23,7 +22,6 @@ const QuickPick = () => {
   
   const [selectedTime, setSelectedTime] = useState<number | null>(null);
   const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
-  const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
   
   useEffect(() => {
     // If we have a quick pick type from the URL, use that to generate exercises

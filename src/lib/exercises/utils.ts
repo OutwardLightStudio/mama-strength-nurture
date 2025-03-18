@@ -2,17 +2,19 @@ import { exercises } from './data';
 import { Exercise, ExerciseFilters, DurationRange, ExerciseCategory, ExerciseRequirement, QuickPickOption, QuickPickType } from './types';
 
 /**
- * Filter exercises based on provided filters
+ * Filter exercises based on provided filters and optionally return N random exercises
  * 
  * @param exercises The array of exercises to filter
  * @param filters The filters to apply
- * @returns Filtered array of exercises
+ * @param options Optional parameters for random selection
+ * @returns Filtered array of exercises, optionally randomized
  */
 export const filterExercises = (
   exercises: Exercise[],
-  filters: ExerciseFilters
+  filters: ExerciseFilters,
+  options?: { random?: boolean; limit?: number }
 ): Exercise[] => {
-  return exercises.filter(exercise => {
+  let filtered = exercises.filter(exercise => {
     // Filter by category
     if (filters.category !== "All" && exercise.category !== filters.category) {
       return false;
@@ -44,6 +46,16 @@ export const filterExercises = (
     
     return true;
   });
+
+  if (options?.random) {
+    filtered = filtered.sort(() => 0.5 - Math.random());
+  }
+
+  if (options?.limit && options.limit > 0) {
+    filtered = filtered.slice(0, options.limit);
+  }
+
+  return filtered;
 };
 
 /**

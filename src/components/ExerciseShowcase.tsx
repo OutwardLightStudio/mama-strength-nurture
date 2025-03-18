@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import ExerciseCard from './ExerciseCard';
 import { Link } from 'react-router-dom';
-import { exercises as exerciseData, getAllCategories } from '@/lib/exercises';
+import { exercises as exerciseData, getAllCategories, filterExercises } from '@/lib/exercises';
+import { ExerciseCategory, DurationRange } from '@/lib/exercises/types';
 
 // Get all categories and add "All" as the first option
 const categories = getAllCategories();
 
 const ExerciseShowcase: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeCategory, setActiveCategory] = useState<"All" | ExerciseCategory>("All");
   
-  // Filter exercises based on the selected category
-  // TODO: move this to the utils (or a proper place)
-  const filteredExercises = activeCategory === "All" 
-    ? exerciseData 
-    : exerciseData.filter(ex => ex.category === activeCategory);
-
-  // Pick two random exercises from the filtered exercises
-  // TODO: move this to the utils (or a proper place)
-  const randomExercises = filteredExercises
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 2);
+  const randomExercises = filterExercises(
+    exerciseData,
+    {
+      category: activeCategory,
+      duration: DurationRange.ALL,
+      requirement: "All"
+    },
+    { random: true, limit: 2 }
+  );
   
   return (
     <section className="py-16 md:py-24 px-6 bg-mama-beige bg-opacity-30">
@@ -38,7 +37,7 @@ const ExerciseShowcase: React.FC = () => {
                   ? 'bg-mama-pink text-mama-dark-text' 
                   : 'bg-white text-mama-light-text hover:bg-mama-light-pink hover:text-mama-dark-text'
               }`}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => setActiveCategory(category as "All" | ExerciseCategory)}
             >
               {category}
             </button>
