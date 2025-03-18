@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import ExerciseCard from '../components/ExerciseCard';
 import Footer from '../components/Footer';
@@ -27,6 +27,11 @@ const Exercises = () => {
   const [activeRequirement, setActiveRequirement] = useState<ExerciseRequirement | "All">("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
+  
+  useEffect(() => {
+    // Scroll to the top of the page when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
   
   // Create the filters object
   const filters: ExerciseFilters = {
