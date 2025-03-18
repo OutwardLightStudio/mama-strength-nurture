@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HealthNotice from '@/components/HealthNotice';
-import ExerciseListItem from '@/components/ExerciseListItem';
+import ExerciseCard from '@/components/ExerciseCard';
 import { Check, RefreshCw, ArrowLeft } from 'lucide-react';
 import { exerciseService, Exercise, QuickPickType } from '@/lib/exercises';
 
@@ -139,11 +139,12 @@ const QuickPick: React.FC = () => {
                 
                 <div className="space-y-4">
                   {exercises.map((exercise) => (
-                    <ExerciseListItem
+                    <ExerciseCard
                       key={exercise.id}
                       exercise={exercise}
                       showViewButton={true}
                       onView={handleViewExercise}
+                      variant="compact"
                     />
                   ))}
                 </div>

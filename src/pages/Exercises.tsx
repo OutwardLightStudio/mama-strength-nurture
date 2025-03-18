@@ -9,6 +9,7 @@ import {
   DurationRange, 
   ExerciseRequirement 
 } from '@/lib/exercises';
+import { exercisePreferencesService } from '@/lib/exercises/ExercisePreferencesService';
 
 const Exercises = () => {
   const [category, setCategory] = useState<"All" | ExerciseCategory>("All");
@@ -16,7 +17,8 @@ const Exercises = () => {
   const [requirement, setRequirement] = useState<"All" | ExerciseRequirement>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [filteredExercises, setFilteredExercises] = useState(exerciseService.getAllExercises());
-  
+  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+
   const categories = exerciseService.getAllCategories();
   const durations = exerciseService.getAllDurationRanges();
   const requirements = exerciseService.getAllRequirements();
@@ -34,6 +36,31 @@ const Exercises = () => {
     });
     setFilteredExercises(filtered);
   }, [category, duration, requirement, searchQuery]);
+
+  useEffect(() => {
+    const loadExercises = async () => {
+      const exerciseList = await exerciseService.getAllExercises();
+      setFilteredExercises(exerciseList);
+      
+      // Load favorite status
+      const favoriteIds = await exercisePreferencesService.getFavoriteExerciseIds();
+      setFavorites(new Set(favoriteIds));
+    };
+
+    loadExercises();
+  }, []);
+
+  const handleFavoriteToggle = (exerciseId: string, isFavorite: boolean) => {
+    setFavorites(prev => {
+      const newFavorites = new Set(prev);
+      if (isFavorite) {
+        newFavorites.add(exerciseId);
+      } else {
+        newFavorites.delete(exerciseId);
+      }
+      return newFavorites;
+    });
+  };
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
@@ -122,7 +149,13 @@ const Exercises = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {filteredExercises.length > 0 ? (
               filteredExercises.map((exercise, index) => (
-                <ExerciseCard key={exercise.id} exercise={exercise} index={index} />
+                <ExerciseCard
+                  key={exercise.id}
+                  exercise={exercise}
+                  variant="compact"
+                  index={index}
+                  showViewButton
+                />
               ))
             ) : (
               <div className="col-span-full text-center py-12">
