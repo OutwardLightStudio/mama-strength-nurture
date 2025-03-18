@@ -5,11 +5,6 @@
  * in a type-safe way.
  */
 
-// Re-export everything from the types file
+// Export the ExerciseService singleton for use throughout the app
+export { exerciseService } from './ExerciseService';
 export * from './types';
-
-// Export the exercise data
-export * from './data';
-
-// Export utility functions
-export * from './utils';

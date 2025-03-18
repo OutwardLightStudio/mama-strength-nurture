@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { quickPickOptions } from '@/lib/exercises';
+import { exerciseService, QuickPickType } from '@/lib/exercises';
 
 const QuickPickSection: React.FC = () => {
+  const quickPickOptions = exerciseService.quickPickOptions;
+
   return (
     <section className="py-16 md:py-24 px-6 bg-white">
       <div className="container mx-auto">
