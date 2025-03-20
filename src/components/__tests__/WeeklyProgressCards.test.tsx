@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import '@testing-library/jest-dom';
 import '@/lib/db/test-setup';
 import WeeklyProgressCards from '../WeeklyProgressCards';
 import { exerciseCompletionService } from '@/lib/exercises/ExerciseCompletionService';
@@ -26,7 +27,8 @@ describe('WeeklyProgressCards', () => {
     render(<WeeklyProgressCards />);
     
     // Should show loading skeleton placeholders
-    expect(screen.getAllByClass('animate-pulse').length).toBeGreaterThan(0);
+    const loadingElements = document.querySelectorAll('.animate-pulse');
+    expect(loadingElements.length).toBeGreaterThan(0);
   });
 
   it('should display cards for the last 7 days', async () => {
@@ -37,7 +39,8 @@ describe('WeeklyProgressCards', () => {
     
     await waitFor(() => {
       // Should display 7 day cards once loaded
-      expect(screen.getAllByRole('listitem').length).toBe(7);
+      const dayCards = document.querySelectorAll('[role="listitem"]');
+      expect(dayCards.length).toBe(7);
     });
   });
 
@@ -55,7 +58,7 @@ describe('WeeklyProgressCards', () => {
     
     await waitFor(() => {
       // After loading, we should see one card with a check icon
-      const checkIcons = screen.getAllByTestId('check-icon');
+      const checkIcons = document.querySelectorAll('[data-testid="check-icon"]');
       expect(checkIcons.length).toBe(1);
     });
   });
@@ -68,7 +71,7 @@ describe('WeeklyProgressCards', () => {
     
     await waitFor(() => {
       // Today's card should have the today class
-      const todayCard = screen.getByTestId('today-card');
+      const todayCard = document.querySelector('[data-testid="today-card"]');
       expect(todayCard).toHaveClass('bg-mama-light-pink');
     });
   });
