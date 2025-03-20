@@ -12,8 +12,6 @@ const currentYear = new Date().getFullYear();
 
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState(new Date().getDay());
-  const [completedExercises, setCompletedExercises] = useState<string[]>([]);
-  const [showContraindicationsInfo, setShowContraindicationsInfo] = useState(false);
   
   // Get all available exercises
   const allExercises = exerciseService.getAllExercises();
@@ -45,14 +43,6 @@ const Schedule = () => {
       suggested: suggestedExercises,
     };
   });
-  
-  const handleCompleteExercise = (id: string) => {
-    if (completedExercises.includes(id)) {
-      setCompletedExercises(completedExercises.filter(exId => exId !== id));
-    } else {
-      setCompletedExercises([...completedExercises, id]);
-    }
-  };
   
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
@@ -128,9 +118,7 @@ const Schedule = () => {
                     <ExerciseCard
                       key={exercise.id}
                       exercise={exercise}
-                      isCompleted={completedExercises.includes(exercise.id)}
                       showComplete={true}
-                      onComplete={handleCompleteExercise}
                       variant="compact"
                     />
                   ))}
