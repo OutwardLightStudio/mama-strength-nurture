@@ -109,4 +109,30 @@ describe('ExerciseCompletionService', () => {
     count = await db.completedExercises.count();
     expect(count).toBe(0);
   });
+
+  it('should get a completion by ID', async () => {
+    // Add a record first
+    const exerciseId = 'test-exercise-1';
+    const id = await service.recordCompletion(exerciseId);
+    
+    // Get the record by ID
+    const record = await service.getCompletionById(id);
+    
+    // Verify record contents
+    expect(record).toBeDefined();
+    expect(record?.id).toBe(id);
+    expect(record?.exerciseId).toBe(exerciseId);
+    expect(record?.completedAt).toBeInstanceOf(Date);
+  });
+
+  it('should return undefined for non-existent completion ID', async () => {
+    // Use a non-existent ID
+    const nonExistentId = 999999;
+    
+    // Try to get the record
+    const record = await service.getCompletionById(nonExistentId);
+    
+    // Verify it returns undefined
+    expect(record).toBeUndefined();
+  });
 });

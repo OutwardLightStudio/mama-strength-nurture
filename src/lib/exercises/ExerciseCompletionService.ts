@@ -1,5 +1,11 @@
 import { db } from '../db';
 
+export interface CompletedExercise {
+  id?: number;  // Auto-incrementing primary key
+  exerciseId: string;
+  completedAt: Date;
+}
+
 export class ExerciseCompletionService {
   /**
    * Records an exercise as completed
@@ -106,6 +112,20 @@ export class ExerciseCompletionService {
       .where('completedAt')
       .between(startDate, endDate)
       .toArray();
+  }
+
+  /**
+   * Gets a completion record by its ID
+   * @param id The ID of the completion record
+   * @returns Promise that resolves to the completion record or undefined if not found
+   */
+  async getCompletionById(id: number): Promise<CompletedExercise | undefined> {
+    try {
+      return await db.completedExercises.get(id);
+    } catch (error) {
+      console.error(`Failed to get exercise completion with ID ${id}:`, error);
+      throw new Error(`Failed to get completion: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   }
 }
 

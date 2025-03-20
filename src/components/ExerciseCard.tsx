@@ -3,7 +3,7 @@ import { Clock, Heart, AlertCircle, Check } from 'lucide-react';
 import { Exercise } from '@/lib/exercises';
 import { cn } from '@/lib/utils';
 import { exercisePreferencesService } from '@/lib/exercises/ExercisePreferencesService';
-import { exerciseCompletionService } from '@/lib/exercises/ExerciseCompletionService';
+import { exerciseCompletionService, CompletedExercise } from '@/lib/exercises/ExerciseCompletionService';
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -26,6 +26,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [completionId, setCompletionId] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     // Load initial favorite status
@@ -35,11 +36,40 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
 
     // Load completion status
     if (showComplete) {
-      exerciseCompletionService.wasCompletedToday(exercise.id)
-        .then(completed => setIsCompleted(completed))
-        .catch(error => console.error('Failed to load completion status:', error));
+      loadCompletionStatus();
     }
   }, [exercise.id, showComplete]);
+
+  const loadCompletionStatus = async () => {
+    try {
+      // First check if the exercise was completed today
+      const wasCompleted = await exerciseCompletionService.wasCompletedToday(exercise.id);
+      
+      if (wasCompleted) {
+        // Find the most recent completion record for this exercise
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const completions = await exerciseCompletionService.getCompletionsInRange(today, tomorrow);
+        const latestCompletion = completions
+          .filter(c => c.exerciseId === exercise.id)
+          .sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime())[0];
+        
+        if (latestCompletion?.id) {
+          setCompletionId(latestCompletion.id);
+          setIsCompleted(true);
+        }
+      } else {
+        setIsCompleted(false);
+        setCompletionId(undefined);
+      }
+    } catch (error) {
+      console.error('Failed to load completion status:', error);
+    }
+  };
 
   const handleFavoriteClick = async (event: React.MouseEvent) => {
     event.preventDefault(); // Prevent any parent click handlers from firing
@@ -56,12 +86,23 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
   const handleCompleteClick = async (event: React.MouseEvent) => {
     event.preventDefault();
     try {
-      if (isCompleted) {
-        await exerciseCompletionService.removeCompletion(exercise.id);
+      if (isCompleted && completionId) {
+        // Remove specific completion by ID
+        await exerciseCompletionService.deleteCompletionById(completionId);
+        setIsCompleted(false);
+        setCompletionId(undefined);
       } else {
-        await exerciseCompletionService.recordCompletion(exercise.id);
+        // Record new completion
+        const newCompletionId = await exerciseCompletionService.recordCompletion(exercise.id);
+        
+        // Get the completion details to verify it was recorded successfully
+        const completion = await exerciseCompletionService.getCompletionById(newCompletionId);
+        
+        if (completion) {
+          setCompletionId(newCompletionId);
+          setIsCompleted(true);
+        }
       }
-      setIsCompleted(!isCompleted);
     } catch (error) {
       console.error('Failed to toggle completion status:', error);
     }
