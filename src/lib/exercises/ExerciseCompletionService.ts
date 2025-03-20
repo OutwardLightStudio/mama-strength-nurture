@@ -44,6 +44,35 @@ export class ExerciseCompletionService {
   }
 
   /**
+   * Deletes a specific completion record by its ID
+   * @param id The ID of the completion record to delete
+   * @returns Promise that resolves to the number of records deleted (0 or 1)
+   */
+  async deleteCompletionById(id: number): Promise<number> {
+    try {
+      await db.completedExercises.delete(id);
+      return 1;
+    } catch (error) {
+      console.error(`Failed to delete exercise completion with ID ${id}:`, error);
+      throw new Error(`Failed to delete completion: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  /**
+   * Deletes all completion records
+   * @returns Promise that resolves to the number of records deleted
+   */
+  async clearAllCompletions(): Promise<number> {
+    try {
+      await db.completedExercises.clear();
+      return 0;
+    } catch (error) {
+      console.error('Failed to clear all exercise completions:', error);
+      throw new Error(`Failed to clear completions: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  /**
    * Checks if an exercise was completed today
    * @param exerciseId The ID of the exercise
    * @returns Promise that resolves to true if the exercise was completed today

@@ -44,8 +44,8 @@ const Navbar: React.FC = () => {
             <Link to="/quick-pick" className="text-mama-dark-text hover:text-mama-pink transition-colors">
               Quick Pick
             </Link>
-            <Link to="/schedule" className="text-mama-dark-text hover:text-mama-pink transition-colors">
-              Schedule
+            <Link to="/history" className="text-mama-dark-text hover:text-mama-pink transition-colors">
+              History
             </Link>
             <Dialog>
               <DialogTrigger asChild>
@@ -88,11 +88,11 @@ const Navbar: React.FC = () => {
                 Quick Pick
               </Link>
               <Link 
-                to="/schedule" 
+                to="/history" 
                 className="text-mama-dark-text hover:text-mama-pink transition-colors p-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Schedule
+                History
               </Link>
               <Dialog>
                 <DialogTrigger asChild>

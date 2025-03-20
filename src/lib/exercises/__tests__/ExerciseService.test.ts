@@ -356,4 +356,25 @@ describe('ExerciseService', () => {
       expect(requirements.length).toBeGreaterThan(1);
     });
   });
+
+  describe('getExerciseById', () => {
+    it('should return the correct exercise by ID', () => {
+      const allExercises = exerciseService.getAllExercises();
+      const firstExercise = allExercises[0];
+      
+      const foundExercise = exerciseService.getExerciseById(firstExercise.id);
+      
+      expect(foundExercise).toBeDefined();
+      expect(foundExercise?.id).toBe(firstExercise.id);
+      expect(foundExercise?.title).toBe(firstExercise.title);
+    });
+
+    it('should return undefined for non-existent exercise ID', () => {
+      const nonExistentId = 'non-existent-exercise-id';
+      
+      const foundExercise = exerciseService.getExerciseById(nonExistentId);
+      
+      expect(foundExercise).toBeUndefined();
+    });
+  });
 });
