@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ExerciseCard from '@/components/ExerciseCard';
+import WeeklyProgressCards from '@/components/WeeklyProgressCards';
 import { Calendar, Trash2, Info } from 'lucide-react';
 import { exerciseService } from '@/lib/exercises';
 import { exerciseCompletionService } from '@/lib/exercises/ExerciseCompletionService';
@@ -150,88 +151,99 @@ const History = () => {
           </div>
           
           <div className="bg-white rounded-2xl shadow-soft p-6 mb-8 animate-fade-in" style={{animationDelay: "0.1s"}}>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-mama-dark-text flex items-center">
-                <Calendar size={20} className="mr-2" />
-                {currentMonth} {currentYear}
-              </h2>
-              <div className="flex space-x-2">
-                <button 
-                  className="btn-outline py-1 px-3 text-sm"
-                  onClick={() => {
-                    const end = new Date();
-                    const start = new Date();
-                    start.setDate(start.getDate() - 30);
-                    setDateRange({ start, end });
-                  }}
-                >
-                  Last 30 Days
-                </button>
-                <button 
-                  className="btn-outline py-1 px-3 text-sm"
-                  onClick={() => {
-                    const end = new Date();
-                    const start = new Date();
-                    start.setMonth(start.getMonth() - 3);
-                    setDateRange({ start, end });
-                  }}
-                >
-                  Last 3 Months
-                </button>
-              </div>
+            {/* Weekly Progress Cards */}
+            <div className="mb-6">
+              <h2 className="text-lg font-medium text-mama-dark-text mb-4">Your Past Week</h2>
+              <WeeklyProgressCards className="pb-2" />
+              <p className="text-xs text-center text-mama-light-text mt-1">
+                Every bit of movement matters – celebrate what you accomplish
+              </p>
             </div>
             
-            {loading ? (
-              <div className="flex justify-center items-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-mama-pink"></div>
+            <div className="border-t border-mama-beige pt-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-mama-dark-text flex items-center">
+                  <Calendar size={20} className="mr-2" />
+                  {currentMonth} {currentYear}
+                </h2>
+                <div className="flex space-x-2">
+                  <button 
+                    className="btn-outline py-1 px-3 text-sm"
+                    onClick={() => {
+                      const end = new Date();
+                      const start = new Date();
+                      start.setDate(start.getDate() - 30);
+                      setDateRange({ start, end });
+                    }}
+                  >
+                    Last 30 Days
+                  </button>
+                  <button 
+                    className="btn-outline py-1 px-3 text-sm"
+                    onClick={() => {
+                      const end = new Date();
+                      const start = new Date();
+                      start.setMonth(start.getMonth() - 3);
+                      setDateRange({ start, end });
+                    }}
+                  >
+                    Last 3 Months
+                  </button>
+                </div>
               </div>
-            ) : totalCompleted > 0 ? (
-              <div className="space-y-8">
-                {Object.entries(exercisesByDate).map(([date, exercises]) => (
-                  <div key={date} className="border-t border-mama-beige pt-4 first:border-t-0 first:pt-0">
-                    <h3 className="text-lg font-medium text-mama-dark-text mb-4">
-                      {formatDate(date)}
-                    </h3>
-                    
-                    <div className="space-y-4">
-                      {exercises.map((item) => (
-                        <div key={item.id} className="flex items-center">
-                          <div className="flex-grow">
-                            <ExerciseCard
-                              key={`${item.id}-${item.exerciseId}`}
-                              exercise={item.exercise}
-                              variant="compact"
-                            />
+              
+              {loading ? (
+                <div className="flex justify-center items-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-mama-pink"></div>
+                </div>
+              ) : totalCompleted > 0 ? (
+                <div className="space-y-8">
+                  {Object.entries(exercisesByDate).map(([date, exercises]) => (
+                    <div key={date} className="border-t border-mama-beige pt-4 first:border-t-0 first:pt-0">
+                      <h3 className="text-lg font-medium text-mama-dark-text mb-4">
+                        {formatDate(date)}
+                      </h3>
+                      
+                      <div className="space-y-4">
+                        {exercises.map((item) => (
+                          <div key={item.id} className="flex items-center">
+                            <div className="flex-grow">
+                              <ExerciseCard
+                                key={`${item.id}-${item.exerciseId}`}
+                                exercise={item.exercise}
+                                variant="compact"
+                              />
+                            </div>
+                            <div className="ml-2 flex flex-col items-end">
+                              <span className="text-xs text-mama-light-text mb-1">
+                                {item.completedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                              </span>
+                              <button
+                                onClick={() => handleRemoveCompletion(item.id)}
+                                className="p-2 text-mama-light-text hover:text-mama-pink transition-colors"
+                                aria-label="Remove from history"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
                           </div>
-                          <div className="ml-2 flex flex-col items-end">
-                            <span className="text-xs text-mama-light-text mb-1">
-                              {item.completedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                            </span>
-                            <button
-                              onClick={() => handleRemoveCompletion(item.id)}
-                              className="p-2 text-mama-light-text hover:text-mama-pink transition-colors"
-                              aria-label="Remove from history"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12 bg-mama-beige bg-opacity-10 rounded-xl">
-                <p className="text-mama-light-text mb-4">No completed exercises yet</p>
-                <button 
-                  className="btn-primary"
-                  onClick={() => window.location.href = '/exercises'}
-                >
-                  Find exercises to do
-                </button>
-              </div>
-            )}
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12 bg-mama-beige bg-opacity-10 rounded-xl">
+                  <p className="text-mama-light-text mb-4">No completed exercises yet</p>
+                  <button 
+                    className="btn-primary"
+                    onClick={() => window.location.href = '/exercises'}
+                  >
+                    Find exercises to do
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in" style={{animationDelay: "0.2s"}}>
