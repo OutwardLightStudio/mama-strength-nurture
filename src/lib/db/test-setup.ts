@@ -1,5 +1,6 @@
 import 'fake-indexeddb/auto';
 import { db } from './index';
+import { afterEach, beforeEach } from 'vitest';
 
 beforeEach(async () => {
   // Delete and recreate the database before each test
