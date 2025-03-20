@@ -85,7 +85,7 @@ describe('ExerciseCompletionService', () => {
     
     // Delete by ID
     const deleteCount = await service.deleteCompletionById(id);
-    expect(deleteCount).toBe(1);
+    expect(deleteCount).toBe(true);
     
     // Verify it's gone
     record = await db.completedExercises.get(id);
@@ -103,7 +103,7 @@ describe('ExerciseCompletionService', () => {
     
     // Clear all records
     const deleteCount = await service.clearAllCompletions();
-    expect(deleteCount).toBeGreaterThan(0);
+    expect(deleteCount).toBe(true);
     
     // Verify all records are gone
     count = await db.completedExercises.count();
@@ -162,7 +162,7 @@ describe('ExerciseCompletionService', () => {
       
       // Delete the completion
       const deleted = await service.deleteCompletionById(firstId!);
-      expect(deleted).toBe(1);
+      expect(deleted).toBe(true);
       
       // Should be able to record a new completion
       const secondId = await service.recordCompletion(exerciseId);

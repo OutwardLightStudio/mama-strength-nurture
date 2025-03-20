@@ -34,9 +34,10 @@ export class ExerciseCompletionService {
   /**
    * Removes a completion record for an exercise
    * @param exerciseId The ID of the exercise to unmark as completed
-   * @returns Promise that resolves to the number of records deleted
+   * @returns Promise that resolves to true if removed, false if not found
+   * @throws Error if the operation fails
    */
-  async removeCompletion(exerciseId: string): Promise<number> {
+  async removeCompletion(exerciseId: string): Promise<boolean> {
     try {
       // Delete the most recent completion for this exercise
       const latestCompletion = await db.completedExercises
@@ -47,9 +48,9 @@ export class ExerciseCompletionService {
 
       if (latestCompletion?.id) {
         await db.completedExercises.delete(latestCompletion.id);
-        return 1;
+        return true;
       }
-      return 0;
+      return false; // No completion found
     } catch (error) {
       console.error(`Failed to remove exercise completion ${exerciseId}:`, error);
       throw new Error(`Failed to remove completion: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -59,12 +60,12 @@ export class ExerciseCompletionService {
   /**
    * Deletes a specific completion record by its ID
    * @param id The ID of the completion record to delete
-   * @returns Promise that resolves to true if deleted, false if not found
+   * @returns Promise that resolves to true if deleted
    */
-  async deleteCompletionById(id: number): Promise<number> {
+  async deleteCompletionById(id: number): Promise<boolean> {
     try {
       await db.completedExercises.delete(id);
-      return 1;
+      return true; // Successfully deleted
     } catch (error) {
       console.error(`Failed to delete exercise completion with ID ${id}:`, error);
       throw new Error(`Failed to delete completion: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -73,12 +74,12 @@ export class ExerciseCompletionService {
 
   /**
    * Deletes all completion records
-   * @returns Promise that resolves to the number of records deleted
+   * @returns Promise that resolves to a boolean indicating success
    */
-  async clearAllCompletions(): Promise<number> {
+  async clearAllCompletions(): Promise<boolean> {
     try {
       await db.completedExercises.clear();
-      return 1;
+      return true;
     } catch (error) {
       console.error('Failed to clear all exercise completions:', error);
       throw new Error(`Failed to clear completions: ${error instanceof Error ? error.message : 'Unknown error'}`);
