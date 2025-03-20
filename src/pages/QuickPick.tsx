@@ -142,6 +142,7 @@ const QuickPick: React.FC = () => {
                     <ExerciseCard
                       key={exercise.id}
                       exercise={exercise}
+                      showComplete={true}
                       showViewButton={true}
                       onView={handleViewExercise}
                       variant="compact"

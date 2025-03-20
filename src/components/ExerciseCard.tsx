@@ -3,13 +3,13 @@ import { Clock, Heart, AlertCircle, Check } from 'lucide-react';
 import { Exercise } from '@/lib/exercises';
 import { cn } from '@/lib/utils';
 import { exercisePreferencesService } from '@/lib/exercises/ExercisePreferencesService';
+import { exerciseCompletionService, CompletedExercise } from '@/lib/exercises/ExerciseCompletionService';
+import { useToast } from '@/components/ui/use-toast';
 
 interface ExerciseCardProps {
   exercise: Exercise;
   index?: number;
   showComplete?: boolean;
-  isCompleted?: boolean;
-  onComplete?: (id: string) => void;
   onView?: (exercise: Exercise) => void;
   showViewButton?: boolean;
   actionComponent?: React.ReactNode;
@@ -20,21 +20,42 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
   exercise, 
   index = 0,
   showComplete = false,
-  isCompleted = false,
-  onComplete,
   onView,
   showViewButton = false,
   actionComponent,
   variant = 'default'
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [completionId, setCompletionId] = useState<number | undefined>(undefined);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Load initial favorite status
     exercisePreferencesService.isFavorite(exercise.id)
       .then(status => setIsFavorite(status))
       .catch(error => console.error('Failed to load favorite status:', error));
-  }, [exercise.id]);
+
+    // Load completion status
+    if (showComplete) {
+      loadCompletionStatus();
+    }
+  }, [exercise.id, showComplete]);
+
+  const loadCompletionStatus = async () => {
+    try {
+      const todaysCompletion = await exerciseCompletionService.getTodaysCompletion(exercise.id);
+      if (todaysCompletion?.id) {
+        setCompletionId(todaysCompletion.id);
+        setIsCompleted(true);
+      } else {
+        setIsCompleted(false);
+        setCompletionId(undefined);
+      }
+    } catch (error) {
+      console.error('Failed to load completion status:', error);
+    }
+  };
 
   const handleFavoriteClick = async (event: React.MouseEvent) => {
     event.preventDefault(); // Prevent any parent click handlers from firing
@@ -45,6 +66,47 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
       }
     } catch (error) {
       console.error('Failed to toggle favorite status:', error);
+    }
+  };
+
+  const handleCompleteClick = async (event: React.MouseEvent) => {
+    event.preventDefault();
+    try {
+      if (isCompleted && completionId) {
+        // Remove specific completion by ID
+        const success = await exerciseCompletionService.deleteCompletionById(completionId);
+        if (success) {
+          setIsCompleted(false);
+          setCompletionId(undefined);
+        }
+      } else {
+        // Record new completion
+        const newCompletionId = await exerciseCompletionService.recordCompletion(exercise.id);
+        
+        if (newCompletionId === undefined) {
+          // Exercise was already completed today
+          toast({
+            title: "Already Completed Today",
+            description: "This exercise has already been recorded for today.",
+            variant: "default"
+          });
+          // Refresh completion status to show the existing completion
+          await loadCompletionStatus();
+        } else {
+          const completion = await exerciseCompletionService.getCompletionById(newCompletionId);
+          if (completion) {
+            setCompletionId(newCompletionId);
+            setIsCompleted(true);
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Failed to toggle completion status:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update exercise completion status.",
+        variant: "destructive"
+      });
     }
   };
 
@@ -98,7 +160,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
 
           {showComplete && (
             <button
-              onClick={() => onComplete?.(exercise.id)}
+              onClick={handleCompleteClick}
               className={cn(
                 "p-1.5 rounded-full transition-colors",
                 isCompleted ? "bg-mama-blue text-white" : "bg-white text-mama-light-text hover:text-mama-blue"
@@ -153,7 +215,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
 
           {showComplete && (
             <button
-              onClick={() => onComplete?.(exercise.id)}
+              onClick={handleCompleteClick}
               className={cn(
                 "p-2 bg-white bg-opacity-80 rounded-full transition-colors hover:bg-opacity-100",
                 isCompleted ? "text-mama-blue" : "text-mama-light-text"

@@ -169,6 +169,15 @@ export class ExerciseService {
   }
 
   /**
+   * Get an exercise by its ID
+   * @param exerciseId The ID of the exercise to retrieve
+   * @returns The exercise object if found, or undefined if not found
+   */
+  getExerciseById(exerciseId: string): Exercise | undefined {
+    return this.getAllExercises().find(exercise => exercise.id === exerciseId);
+  }
+
+  /**
    * Available quick pick options
    */
   readonly quickPickOptions: QuickPickOption[] = [

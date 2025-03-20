@@ -1,3 +1,4 @@
+import '@/lib/db/test-setup';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { ExercisePreferencesService, ExercisePreference } from '../ExercisePreferencesService';
 import { db } from '@/lib/db';
