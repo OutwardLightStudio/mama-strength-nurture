@@ -8,12 +8,19 @@ export interface CompletedExercise {
 
 export class ExerciseCompletionService {
   /**
-   * Records an exercise as completed
+   * Records an exercise as completed if it hasn't been completed today
    * @param exerciseId The ID of the completed exercise
-   * @returns Promise that resolves to the ID of the completion record
+   * @returns Promise that resolves to the ID of the completion record, or undefined if already completed today
    */
-  async recordCompletion(exerciseId: string): Promise<number> {
+  async recordCompletion(exerciseId: string): Promise<number | undefined> {
     try {
+      // Check if already completed today
+      const existingCompletion = await this.getTodaysCompletion(exerciseId);
+      if (existingCompletion) {
+        return undefined; // Already completed today
+      }
+
+      // Record new completion
       return await db.completedExercises.add({
         exerciseId,
         completedAt: new Date()
@@ -52,7 +59,7 @@ export class ExerciseCompletionService {
   /**
    * Deletes a specific completion record by its ID
    * @param id The ID of the completion record to delete
-   * @returns Promise that resolves to the number of records deleted (0 or 1)
+   * @returns Promise that resolves to true if deleted, false if not found
    */
   async deleteCompletionById(id: number): Promise<number> {
     try {
@@ -71,7 +78,7 @@ export class ExerciseCompletionService {
   async clearAllCompletions(): Promise<number> {
     try {
       await db.completedExercises.clear();
-      return 0;
+      return 1;
     } catch (error) {
       console.error('Failed to clear all exercise completions:', error);
       throw new Error(`Failed to clear completions: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -99,6 +106,32 @@ export class ExerciseCompletionService {
       .count();
 
     return count > 0;
+  }
+
+  /**
+   * Gets today's completion record for an exercise if it exists
+   * @param exerciseId The ID of the exercise
+   * @returns Promise that resolves to the completion record or undefined if not found
+   */
+  async getTodaysCompletion(exerciseId: string): Promise<CompletedExercise | undefined> {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const completions = await db.completedExercises
+      .where('exerciseId')
+      .equals(exerciseId)
+      .filter(completion => 
+        completion.completedAt >= today && completion.completedAt < tomorrow
+      )
+      .toArray();
+
+    // Return the most recent completion if multiple exist
+    return completions.sort((a, b) => 
+      b.completedAt.getTime() - a.completedAt.getTime()
+    )[0];
   }
 
   /**

@@ -135,4 +135,61 @@ describe('ExerciseCompletionService', () => {
     // Verify it returns undefined
     expect(record).toBeUndefined();
   });
+
+  describe('duplicate prevention', () => {
+    it('should prevent recording duplicate completions on the same day', async () => {
+      const exerciseId = 'test-exercise-1';
+      
+      // First completion should succeed
+      const firstId = await service.recordCompletion(exerciseId);
+      expect(firstId).toBeDefined();
+      
+      // Second completion should return undefined
+      const secondId = await service.recordCompletion(exerciseId);
+      expect(secondId).toBeUndefined();
+      
+      // Verify only one completion exists
+      const todaysCompletion = await service.getTodaysCompletion(exerciseId);
+      expect(todaysCompletion?.id).toBe(firstId);
+    });
+
+    it('should allow recording completion after previous completion is deleted', async () => {
+      const exerciseId = 'test-exercise-1';
+      
+      // Record initial completion
+      const firstId = await service.recordCompletion(exerciseId);
+      expect(firstId).toBeDefined();
+      
+      // Delete the completion
+      const deleted = await service.deleteCompletionById(firstId!);
+      expect(deleted).toBe(1);
+      
+      // Should be able to record a new completion
+      const secondId = await service.recordCompletion(exerciseId);
+      expect(secondId).toBeDefined();
+      expect(secondId).not.toBe(firstId);
+    });
+  });
+
+  describe('getTodaysCompletion', () => {
+    it('should return undefined if no completion exists today', async () => {
+      const exerciseId = 'test-exercise-1';
+      const completion = await service.getTodaysCompletion(exerciseId);
+      expect(completion).toBeUndefined();
+    });
+
+    it('should return the most recent completion if multiple exist today', async () => {
+      const exerciseId = 'test-exercise-1';
+      
+      // Add a completion and then delete it
+      const firstId = await service.recordCompletion(exerciseId);
+      await service.deleteCompletionById(firstId!);
+      
+      // Add another completion
+      const secondId = await service.recordCompletion(exerciseId);
+      
+      const todaysCompletion = await service.getTodaysCompletion(exerciseId);
+      expect(todaysCompletion?.id).toBe(secondId);
+    });
+  });
 });

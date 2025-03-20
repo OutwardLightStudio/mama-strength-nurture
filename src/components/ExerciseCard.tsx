@@ -4,6 +4,7 @@ import { Exercise } from '@/lib/exercises';
 import { cn } from '@/lib/utils';
 import { exercisePreferencesService } from '@/lib/exercises/ExercisePreferencesService';
 import { exerciseCompletionService, CompletedExercise } from '@/lib/exercises/ExerciseCompletionService';
+import { useToast } from '@/components/ui/use-toast';
 
 interface ExerciseCardProps {
   exercise: Exercise;
@@ -27,6 +28,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
   const [isFavorite, setIsFavorite] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [completionId, setCompletionId] = useState<number | undefined>(undefined);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Load initial favorite status
@@ -42,26 +44,10 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
 
   const loadCompletionStatus = async () => {
     try {
-      // First check if the exercise was completed today
-      const wasCompleted = await exerciseCompletionService.wasCompletedToday(exercise.id);
-      
-      if (wasCompleted) {
-        // Find the most recent completion record for this exercise
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        
-        const completions = await exerciseCompletionService.getCompletionsInRange(today, tomorrow);
-        const latestCompletion = completions
-          .filter(c => c.exerciseId === exercise.id)
-          .sort((a, b) => b.completedAt.getTime() - a.completedAt.getTime())[0];
-        
-        if (latestCompletion?.id) {
-          setCompletionId(latestCompletion.id);
-          setIsCompleted(true);
-        }
+      const todaysCompletion = await exerciseCompletionService.getTodaysCompletion(exercise.id);
+      if (todaysCompletion?.id) {
+        setCompletionId(todaysCompletion.id);
+        setIsCompleted(true);
       } else {
         setIsCompleted(false);
         setCompletionId(undefined);
@@ -88,23 +74,39 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
     try {
       if (isCompleted && completionId) {
         // Remove specific completion by ID
-        await exerciseCompletionService.deleteCompletionById(completionId);
-        setIsCompleted(false);
-        setCompletionId(undefined);
+        const success = await exerciseCompletionService.deleteCompletionById(completionId);
+        if (success) {
+          setIsCompleted(false);
+          setCompletionId(undefined);
+        }
       } else {
         // Record new completion
         const newCompletionId = await exerciseCompletionService.recordCompletion(exercise.id);
         
-        // Get the completion details to verify it was recorded successfully
-        const completion = await exerciseCompletionService.getCompletionById(newCompletionId);
-        
-        if (completion) {
-          setCompletionId(newCompletionId);
-          setIsCompleted(true);
+        if (newCompletionId === undefined) {
+          // Exercise was already completed today
+          toast({
+            title: "Already Completed Today",
+            description: "This exercise has already been recorded for today.",
+            variant: "default"
+          });
+          // Refresh completion status to show the existing completion
+          await loadCompletionStatus();
+        } else {
+          const completion = await exerciseCompletionService.getCompletionById(newCompletionId);
+          if (completion) {
+            setCompletionId(newCompletionId);
+            setIsCompleted(true);
+          }
         }
       }
     } catch (error) {
       console.error('Failed to toggle completion status:', error);
+      toast({
+        title: "Error",
+        description: "Failed to update exercise completion status.",
+        variant: "destructive"
+      });
     }
   };
 
