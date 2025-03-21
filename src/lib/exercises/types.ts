@@ -196,10 +196,19 @@ export interface Exercise {
   contraindications?: ExerciseContraindication[];
   
   /** Recommended postpartum stage (e.g., "0-6 weeks", "6-12 weeks", "3-6 months", "6+ months") */
-  recommendedStage?: string[];
+  postpartumPhase?: string[];
   
   /** Brief description of the exercise */
   description?: string;
+
+  /** Exercise difficulty level */
+  level?: string;
+
+  /** Step by step instructions */
+  steps?: string[];
+
+  /** Optional modifications for the exercise */
+  modifications?: string[];
 }
 
 /**
