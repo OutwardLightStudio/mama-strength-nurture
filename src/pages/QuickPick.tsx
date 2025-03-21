@@ -143,12 +143,6 @@ const QuickPick: React.FC = () => {
                     />
                   ))}
                 </div>
-                
-                <div className="mt-6 flex justify-center">
-                  <button className="btn-primary flex items-center">
-                    Start Workout <Check size={18} className="ml-1" />
-                  </button>
-                </div>
               </div>
               
               <div className="bg-mama-light-blue rounded-2xl p-6 text-center">
