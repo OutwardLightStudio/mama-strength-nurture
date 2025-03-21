@@ -83,7 +83,7 @@ const Exercises = () => {
               placeholder="Search exercises..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full md:w-96 px-4 py-2 rounded-lg border border-mama-beige focus:border-mama-pink focus:ring focus:ring-mama-pink focus:ring-opacity-30 transition-all outline-none"
+              className="w-full md:w-96 px-4 py-2 rounded-lg border border-mama-beige bg-mama-beige text-mama-dark-text focus:border-mama-pink focus:ring focus:ring-mama-pink focus:ring-opacity-30 transition-all outline-none"
             />
           </div>
           
