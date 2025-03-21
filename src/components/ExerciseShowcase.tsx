@@ -48,6 +48,7 @@ const ExerciseShowcase: React.FC = () => {
               key={exercise.id} 
               exercise={exercise} 
               index={index}
+              showViewButton={true}
             />
           ))}
         </div>

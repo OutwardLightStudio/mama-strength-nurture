@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HealthNotice from '@/components/HealthNotice';
@@ -58,11 +58,6 @@ const QuickPick: React.FC = () => {
     }
   };
 
-  const handleViewExercise = (exercise: Exercise) => {
-    // TODO: Navigate to exercise detail or open exercise modal
-    console.log('View exercise:', exercise.id);
-  };
-
   // Calculate total duration
   const totalDuration = exerciseService.getTotalDuration(exercises);
 
@@ -89,17 +84,13 @@ const QuickPick: React.FC = () => {
               {exerciseService.quickPickOptions.map((timeOption) => (
                 <button 
                   key={timeOption.minutes}
-                  className={`w-32 h-40 rounded-2xl flex flex-col items-center justify-center transition-all ${
-                    option.minutes === timeOption.minutes
-                      ? 'bg-mama-pink shadow-soft-lg transform scale-105'
-                      : 'bg-white shadow-soft hover:transform hover:scale-105'
-                  }`}
+                  className="w-36 h-40 rounded-2xl flex flex-col items-center justify-center transition-all bg-white shadow-soft hover:transform hover:scale-105"
                   onClick={() => handleQuickPickSelection(timeOption)}
                   aria-label={`Select ${timeOption.title} workout for ${timeOption.minutes} minutes`}
                 >
                   <div className="text-4xl font-bold mb-2 text-mama-dark-text">{timeOption.minutes}</div>
                   <div className="text-xs text-mama-light-text mb-4">minutes</div>
-                  <p className={option.minutes === timeOption.minutes ? "text-mama-dark-text" : "text-mama-light-text"}>
+                  <p className="text-mama-light-text">
                     {timeOption.title}
                   </p>
                 </button>
@@ -129,7 +120,7 @@ const QuickPick: React.FC = () => {
                 </button>
               </div>
               
-              <div className="bg-white rounded-2xl shadow-soft p-6 mb-8">
+              <div className="bg-white rounded-2xl shadow-soft p-6 mb-4">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-semibold text-mama-dark-text">{option.title} Workout</h2>
                   <div className="flex items-center text-mama-light-text text-sm">
@@ -144,27 +135,20 @@ const QuickPick: React.FC = () => {
                       exercise={exercise}
                       showComplete={true}
                       showViewButton={true}
-                      onView={handleViewExercise}
                       variant="compact"
                     />
                   ))}
                 </div>
-                
-                <div className="mt-6 flex justify-center">
-                  <button className="btn-primary flex items-center">
-                    Start Workout <Check size={18} className="ml-1" />
-                  </button>
-                </div>
               </div>
               
-              <div className="bg-mama-light-blue rounded-2xl p-6 text-center">
-                <h3 className="text-lg font-medium text-mama-dark-text mb-2">Didn't find what you're looking for?</h3>
+              <div className="bg-mama-light-blue rounded-2xl p-6 text-center mb-4">
+                <h3 className="text-lg font-medium text-mama-dark-text">Didn't find what you're looking for?</h3>
                 <p className="text-mama-light-text mb-4">
                   Browse our full exercise library to find the perfect movement for you and your baby.
                 </p>
-                <button className="btn-outline">
+                <Link to="/exercises" className="btn-outline inline-flex items-center justify-center">
                   Browse all exercises
-                </button>
+                </Link>
               </div>
             </div>
           )}

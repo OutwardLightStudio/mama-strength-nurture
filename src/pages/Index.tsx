@@ -3,10 +3,11 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import FeatureSection from '../components/FeatureSection';
 import ExerciseShowcase from '../components/ExerciseShowcase';
-import QuickPickSection from '../components/QuickPickSection';
+
 import ConnectionSection from '../components/ConnectionSection';
 import CTASection from '../components/CTASection';
 import Footer from '../components/Footer';
+import QuickPick from './QuickPick';
 
 const Index = () => {
   return (
@@ -15,7 +16,7 @@ const Index = () => {
       <HeroSection />
       <FeatureSection />
       <ExerciseShowcase />
-      <QuickPickSection />
+      <QuickPick />
       <ConnectionSection />
       <CTASection />
       <Footer />

@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -29,8 +28,10 @@ export default {
           beige: "#F5F0EA",
           pink: "#F9D5CE",
           "light-pink": "#FDE8E4",
+          "dark-pink": "#E5A399", // New darker pink for better contrast
           blue: "#C9DBE9",
           "light-blue": "#E3EDF7",
+          "dark-blue": "#91B7D4", // New darker blue for better contrast
           sage: "#D1E2C4",
           "dark-text": "#2A2B33",
           "light-text": "#6D6E77",
@@ -110,5 +111,13 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require("tailwindcss-animate"), require("daisyui")],
+  daisyui: {
+    themes: ["light"],
+    base: false, // don't include default daisyUI base styles
+    styled: true, // include daisyUI styled components
+    utils: true, // include daisyUI utility classes
+    prefix: "daisy-", // prefix for daisyUI classes to avoid conflicts
+  },
 } satisfies Config;
