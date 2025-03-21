@@ -84,7 +84,7 @@ const QuickPick: React.FC = () => {
               {exerciseService.quickPickOptions.map((timeOption) => (
                 <button 
                   key={timeOption.minutes}
-                  className={`w-32 h-40 rounded-2xl flex flex-col items-center justify-center transition-all ${
+                  className={`w-36 h-40 rounded-2xl flex flex-col items-center justify-center transition-all ${
                     option.minutes === timeOption.minutes
                       ? 'bg-mama-pink shadow-soft-lg transform scale-105'
                       : 'bg-white shadow-soft hover:transform hover:scale-105'
