@@ -39,6 +39,7 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
       <DialogContent 
         className="bg-white rounded-2xl shadow-medium max-w-3xl w-full p-0 overflow-hidden daisy-modal"
         aria-describedby={`exercise-${exercise.id}-description`}
+        data-testid="exercise-detail-dialog"
       >
         <DialogHeader>
           <VisuallyHidden>
@@ -168,6 +169,7 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
             <button 
               onClick={onClose}
               className="daisy-btn daisy-btn-sm text-xs bg-mama-blue text-mama-dark-text hover:bg-mama-dark-blue px-3 py-1 rounded-full transition-colors flex items-center gap-1"
+              data-testid="dialog-close-button"
             >
               Close <ArrowUpRight size={14} />
             </button>

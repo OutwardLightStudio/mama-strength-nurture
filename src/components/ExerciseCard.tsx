@@ -148,7 +148,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
             />
           </div>
           
-          <div className="flex-grow">
+          <div className="flex-1">
             <h3 className="text-mama-dark-text font-medium">{exercise.title}</h3>
             <div className="flex items-center mt-1 flex-wrap gap-1">
               <span className="text-xs bg-white px-2 py-0.5 rounded text-mama-light-text">
