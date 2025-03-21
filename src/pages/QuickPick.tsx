@@ -124,7 +124,7 @@ const QuickPick: React.FC = () => {
                 </button>
               </div>
               
-              <div className="bg-white rounded-2xl shadow-soft p-6 mb-8">
+              <div className="bg-white rounded-2xl shadow-soft p-6 mb-4">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-semibold text-mama-dark-text">{option.title} Workout</h2>
                   <div className="flex items-center text-mama-light-text text-sm">
@@ -145,8 +145,8 @@ const QuickPick: React.FC = () => {
                 </div>
               </div>
               
-              <div className="bg-mama-light-blue rounded-2xl p-6 text-center">
-                <h3 className="text-lg font-medium text-mama-dark-text mb-2">Didn't find what you're looking for?</h3>
+              <div className="bg-mama-light-blue rounded-2xl p-6 text-center mb-4">
+                <h3 className="text-lg font-medium text-mama-dark-text">Didn't find what you're looking for?</h3>
                 <p className="text-mama-light-text mb-4">
                   Browse our full exercise library to find the perfect movement for you and your baby.
                 </p>
