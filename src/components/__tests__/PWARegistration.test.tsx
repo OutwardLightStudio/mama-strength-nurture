@@ -23,7 +23,7 @@ vi.mock('virtual:pwa-register/react', () => {
       };
     })
   };
-}, { virtual: true });
+});
 
 // Mock toast module
 vi.mock('../ui/use-toast', () => ({
