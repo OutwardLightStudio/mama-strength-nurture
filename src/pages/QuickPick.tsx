@@ -84,17 +84,13 @@ const QuickPick: React.FC = () => {
               {exerciseService.quickPickOptions.map((timeOption) => (
                 <button 
                   key={timeOption.minutes}
-                  className={`w-36 h-40 rounded-2xl flex flex-col items-center justify-center transition-all ${
-                    option.minutes === timeOption.minutes
-                      ? 'bg-mama-pink shadow-soft-lg transform scale-105'
-                      : 'bg-white shadow-soft hover:transform hover:scale-105'
-                  }`}
+                  className="w-36 h-40 rounded-2xl flex flex-col items-center justify-center transition-all bg-white shadow-soft hover:transform hover:scale-105"
                   onClick={() => handleQuickPickSelection(timeOption)}
                   aria-label={`Select ${timeOption.title} workout for ${timeOption.minutes} minutes`}
                 >
                   <div className="text-4xl font-bold mb-2 text-mama-dark-text">{timeOption.minutes}</div>
                   <div className="text-xs text-mama-light-text mb-4">minutes</div>
-                  <p className={option.minutes === timeOption.minutes ? "text-mama-dark-text" : "text-mama-light-text"}>
+                  <p className="text-mama-light-text">
                     {timeOption.title}
                   </p>
                 </button>
