@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import HealthNotice from '@/components/HealthNotice';
@@ -150,9 +150,9 @@ const QuickPick: React.FC = () => {
                 <p className="text-mama-light-text mb-4">
                   Browse our full exercise library to find the perfect movement for you and your baby.
                 </p>
-                <button className="btn-outline">
+                <Link to="/exercises" className="btn-outline inline-flex items-center justify-center">
                   Browse all exercises
-                </button>
+                </Link>
               </div>
             </div>
           )}
