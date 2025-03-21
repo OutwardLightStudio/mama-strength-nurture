@@ -58,11 +58,6 @@ const QuickPick: React.FC = () => {
     }
   };
 
-  const handleViewExercise = (exercise: Exercise) => {
-    // TODO: Navigate to exercise detail or open exercise modal
-    console.log('View exercise:', exercise.id);
-  };
-
   // Calculate total duration
   const totalDuration = exerciseService.getTotalDuration(exercises);
 
@@ -144,7 +139,6 @@ const QuickPick: React.FC = () => {
                       exercise={exercise}
                       showComplete={true}
                       showViewButton={true}
-                      onView={handleViewExercise}
                       variant="compact"
                     />
                   ))}
