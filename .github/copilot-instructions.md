@@ -11,8 +11,12 @@ This project uses npm for package management and vitest for testing.
 5. Ensure client-facing templates and views are accessible, such as using ARIA markup
 
 ## Testing
-- All new features or changes should include corresponding tests using vitest.
-- Run tests frequently to ensure no regressions are introduced.
+- All new features or changes should include corresponding tests
+- For unit tests, use `vitest`
+- Add UI tests using `jsdom`, `@testing-library/jest-dom`, and `@testing-library/react`
+- Break test suites into relatively small files for maintainability and focus
+- Run tests frequently to ensure no regressions are introduced
+- Ensure test coverage improves by checking the output of `@vitest/coverage-v8`
 
 ## Package Management
 - Use npm for installing, updating, or removing dependencies.
