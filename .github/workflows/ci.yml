@@ -18,8 +18,38 @@ jobs:
       with:
         node-version: '20'
         cache: 'npm'
+
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      id: node-modules-cache
+      with:
+        path: |
+          node_modules
+          ~/.npm
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-modules-
     
+    - name: Restore vitest cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          **/node_modules/.vitest
+        key: ${{ runner.os }}-vitest-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-vitest-
+
+    - name: Restore coverage cache
+      uses: actions/cache@v4
+      with:
+        path: coverage
+        key: ${{ runner.os }}-coverage-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-coverage-
+    
+    # Only run npm ci if cache miss
     - name: Install dependencies
+      if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: npm ci
     
     - name: Run tests with coverage
