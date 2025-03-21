@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -110,5 +109,13 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require("tailwindcss-animate"), require("daisyui")],
+  daisyui: {
+    themes: ["light"],
+    base: false, // don't include default daisyUI base styles
+    styled: true, // include daisyUI styled components
+    utils: true, // include daisyUI utility classes
+    prefix: "daisy-", // prefix for daisyUI classes to avoid conflicts
+  },
 } satisfies Config;
