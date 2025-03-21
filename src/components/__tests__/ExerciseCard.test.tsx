@@ -52,7 +52,7 @@ const mockExercise: Exercise = {
   steps: ['Step 1', 'Step 2'],
   contraindications: [ExerciseContraindication.BACK_PAIN],
   modifications: ['Modification 1'],
-  connectionTips: 'Baby connection tip',
+  connectionTips: ['Baby connection tip',],
   postpartumPhase: ['Early postpartum',]
 };
 
@@ -168,7 +168,9 @@ describe('ExerciseCard', () => {
         // Check content
         expect(screen.getByText(mockExercise.steps[0])).toBeInTheDocument();
         expect(screen.getByText(mockExercise.modifications[0])).toBeInTheDocument();
-        expect(screen.getByText(mockExercise.connectionTips)).toBeInTheDocument();
+        mockExercise.connectionTips.forEach((tip) => {
+          expect(screen.getByText(tip)).toBeInTheDocument();
+        });
       });
     });
 
