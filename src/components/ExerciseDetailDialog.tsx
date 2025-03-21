@@ -74,14 +74,14 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
           <div className="absolute top-4 left-4 flex gap-2">
             <button 
               onClick={onFavoriteToggle}
-              className="btn btn-circle bg-white bg-opacity-80 hover:bg-opacity-100"
+              className="p-2 bg-white bg-opacity-80 rounded-full transition-colors hover:bg-opacity-100 daisy-btn daisy-btn-circle"
               aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
             >
               <Heart 
                 size={20} 
                 className={cn(
                   "transition-colors",
-                  isFavorite ? "fill-mama-pink text-mama-pink" : "text-mama-pink"
+                  isFavorite ? "fill-mama-dark-pink text-mama-dark-pink" : "text-mama-dark-pink"
                 )} 
               />
             </button>
@@ -90,8 +90,8 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
               <button
                 onClick={onCompleteToggle}
                 className={cn(
-                  "btn btn-circle bg-white bg-opacity-80 hover:bg-opacity-100",
-                  isCompleted ? "text-mama-blue" : "text-mama-light-text"
+                  "p-2 bg-white bg-opacity-80 rounded-full transition-colors hover:bg-opacity-100 daisy-btn daisy-btn-circle",
+                  isCompleted ? "bg-mama-dark-blue text-white" : "bg-white text-mama-dark-blue"
                 )}
                 aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
               >

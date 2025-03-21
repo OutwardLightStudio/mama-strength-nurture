@@ -175,7 +175,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
                 size={18} 
                 className={cn(
                   "transition-colors",
-                  isFavorite ? "fill-mama-pink text-mama-pink" : "text-mama-pink"
+                  isFavorite ? "fill-mama-dark-pink text-mama-dark-pink" : "text-mama-dark-pink"
                 )} 
               />
             </button>
@@ -185,7 +185,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
                 onClick={handleCompleteClick}
                 className={cn(
                   "p-1.5 rounded-full transition-colors",
-                  isCompleted ? "bg-mama-blue text-white" : "bg-white text-mama-light-text hover:text-mama-blue"
+                  isCompleted ? "bg-mama-dark-blue text-white" : "bg-white text-mama-dark-blue hover:text-mama-dark-blue"
                 )}
                 aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
               >
@@ -244,7 +244,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
                 size={18} 
                 className={cn(
                   "transition-colors",
-                  isFavorite ? "fill-mama-pink text-mama-pink" : "text-mama-pink"
+                  isFavorite ? "fill-mama-dark-pink text-mama-dark-pink" : "text-mama-dark-pink"
                 )} 
               />
             </button>
@@ -254,7 +254,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
                 onClick={handleCompleteClick}
                 className={cn(
                   "p-2 bg-white bg-opacity-80 rounded-full transition-colors hover:bg-opacity-100",
-                  isCompleted ? "text-mama-blue" : "text-mama-light-text"
+                  isCompleted ? "text-mama-dark-blue" : "text-mama-dark-blue"
                 )}
                 aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
               >

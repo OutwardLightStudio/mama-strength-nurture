@@ -28,8 +28,10 @@ export default {
           beige: "#F5F0EA",
           pink: "#F9D5CE",
           "light-pink": "#FDE8E4",
+          "dark-pink": "#E5A399", // New darker pink for better contrast
           blue: "#C9DBE9",
           "light-blue": "#E3EDF7",
+          "dark-blue": "#91B7D4", // New darker blue for better contrast
           sage: "#D1E2C4",
           "dark-text": "#2A2B33",
           "light-text": "#6D6E77",
