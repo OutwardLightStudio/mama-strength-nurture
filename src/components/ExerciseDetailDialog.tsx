@@ -2,13 +2,6 @@ import React from 'react';
 import { Clock, Heart, AlertCircle, Check, Calendar, User, ArrowUpRight } from 'lucide-react';
 import { Exercise } from '@/lib/exercises';
 import { cn } from '@/lib/utils';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogHeader,
-  DialogFooter,
-} from '@/components/ui/dialog';
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { VisuallyHidden } from "@/components/ui/visually-hidden";
@@ -34,18 +27,39 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
   onCompleteToggle,
   showComplete
 }) => {
+  // Create a unique ID for this modal
+  const modalId = `exercise-modal-${exercise.id}`;
+
+  // Effect to handle opening/closing the modal
+  React.useEffect(() => {
+    const modalElement = document.getElementById(modalId) as HTMLDialogElement;
+    if (isOpen && modalElement) {
+      modalElement.showModal();
+    } else if (modalElement && modalElement.open) {
+      modalElement.close();
+    }
+  }, [isOpen, modalId]);
+
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent 
-        className="bg-white rounded-2xl shadow-medium max-w-3xl w-full p-0 overflow-hidden daisy-modal"
+    <dialog 
+      id={modalId} 
+      className="modal"
+      onClose={onClose}
+    >
+      <div className="modal-box max-w-3xl w-full p-0 bg-white rounded-2xl overflow-hidden"
         aria-describedby={`exercise-${exercise.id}-description`}
         data-testid="exercise-detail-dialog"
       >
-        <DialogHeader>
-          <VisuallyHidden>
-            <DialogTitle>{exercise.title}</DialogTitle>
-          </VisuallyHidden>
-        </DialogHeader>
+        <form method="dialog">
+          <button 
+            className="btn btn-sm btn-circle absolute right-2 top-2 z-10 bg-black bg-opacity-40 hover:bg-opacity-100" 
+            aria-label="Close dialog"
+          >✕</button>
+        </form>
+
+        <VisuallyHidden>
+          <h1>{exercise.title}</h1>
+        </VisuallyHidden>
 
         <div className="relative w-full aspect-video max-h-64 overflow-hidden">
           <img 
@@ -57,10 +71,10 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
           <div className="absolute bottom-4 left-6 right-6 text-white">
             <h2 className="text-2xl font-semibold">{exercise.title}</h2>
           </div>
-          <div className="absolute top-4 right-4 flex gap-2">
+          <div className="absolute top-4 left-4 flex gap-2">
             <button 
               onClick={onFavoriteToggle}
-              className="p-2 bg-white bg-opacity-80 rounded-full transition-colors hover:bg-opacity-100 daisy-btn daisy-btn-circle"
+              className="btn btn-circle bg-white bg-opacity-80 hover:bg-opacity-100"
               aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
             >
               <Heart 
@@ -76,7 +90,7 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
               <button
                 onClick={onCompleteToggle}
                 className={cn(
-                  "p-2 bg-white bg-opacity-80 rounded-full transition-colors hover:bg-opacity-100 daisy-btn daisy-btn-circle",
+                  "btn btn-circle bg-white bg-opacity-80 hover:bg-opacity-100",
                   isCompleted ? "text-mama-blue" : "text-mama-light-text"
                 )}
                 aria-label={isCompleted ? "Mark as incomplete" : "Mark as complete"}
@@ -87,7 +101,7 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
           </div>
         </div>
         
-        <DialogHeader className="px-6 pt-6 pb-0">
+        <div className="px-6 pt-6">
           <div className="flex flex-wrap gap-2 mb-3">
             <Badge className="bg-mama-beige bg-opacity-30 hover:bg-mama-beige text-mama-dark-text">
               {exercise.category}
@@ -101,9 +115,9 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
               </Badge>
             )}
           </div>
-        </DialogHeader>
+        </div>
         
-        <div id={`exercise-${exercise.id}-description`} className="px-6 py-4 daisy-modal-body">
+        <div id={`exercise-${exercise.id}-description`} className="px-6 py-4">
           {exercise.contraindications && exercise.contraindications.length > 0 && (
             <div className="mb-4 p-3 bg-mama-light-pink rounded-lg border border-mama-pink" role="alert">
               <div className="font-semibold text-mama-dark-text flex items-center mb-1">
@@ -159,24 +173,11 @@ const ExerciseDetailDialog: React.FC<ExerciseDetailDialogProps> = ({
             </>
           )}
         </div>
-        
-        <DialogFooter className="bg-mama-beige bg-opacity-30 p-4 daisy-modal-footer">
-          <div className="flex items-center justify-between w-full">
-            <div className="text-xs text-mama-light-text flex items-center">
-              <Calendar size={14} className="mr-1" />
-              {exercise.postpartumPhase ? `Recommended for ${exercise.postpartumPhase}` : 'Suitable for all postpartum phases'}
-            </div>
-            <button 
-              onClick={onClose}
-              className="daisy-btn daisy-btn-sm text-xs bg-mama-blue text-mama-dark-text hover:bg-mama-dark-blue px-3 py-1 rounded-full transition-colors flex items-center gap-1"
-              data-testid="dialog-close-button"
-            >
-              Close <ArrowUpRight size={14} />
-            </button>
-          </div>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </div>
+      <form method="dialog" className="modal-backdrop">
+        <button onClick={onClose}>close</button>
+      </form>
+    </dialog>
   );
 };
 
