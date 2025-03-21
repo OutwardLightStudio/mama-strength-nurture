@@ -11,10 +11,12 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
     },
+    setupFiles: ['./vitest.setup.ts'],
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
+      'virtual:pwa-register/react': resolve(__dirname, './src/__mocks__/virtual-pwa-register-react.ts'),
     },
   },
 });

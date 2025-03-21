@@ -306,10 +306,6 @@ describe('ExerciseService', () => {
       Math.random = vi.fn().mockImplementation(() => 0.9);
       const result2 = exerciseService.findExercisesForQuickPick(QuickPickType.RESET, true);
       
-      // Log results for debugging
-      console.log('Result 1:', result1.map(e => e.id));
-      console.log('Result 2:', result2.map(e => e.id));
-      
       // The two randomized results should be different (either in content or order)
       let isDifferent = false;
       if (result1.length === result2.length) {
